@@ -54,7 +54,7 @@ void main(){
             }
         }
 
-        do{
+       	while(comprueba()!=0){
             clrscr();
             mostrar();
 
@@ -69,7 +69,7 @@ void main(){
 			mostrar();
             getch();
 
-        }while(comprueba()!=0);
+        }
 
         getch();
         clrscr();
@@ -137,6 +137,7 @@ void jugador2(){
 int comprueba(){
 	int i, j, x,win=0;
 	int lose=0;
+	int lleno=0;
 
 	/*Recorre horizontales en busca de semejantes*/
     for(x=0;x<3;x++){
@@ -161,8 +162,6 @@ int comprueba(){
 				}
 				continue;
 			}else{
-				clrscr();
-				printf("\n\tEmpate");
 				win=0;
 				lose=0;
 				break;
@@ -196,8 +195,6 @@ int comprueba(){
 				continue;
 				
 			}else{
-				clrscr();
-				printf("\n\tEmpate");
 				win=0;
 				lose=0;
 				break;
@@ -230,12 +227,10 @@ int comprueba(){
 					continue;
 				}
 				else{
-				clrscr();
-				printf("\n\tEmpate");
-				win=0;
-				lose=0;
-				break;
-			}
+					win=0;
+					lose=0;
+					break;
+				}
 			}
 		}
 	}
@@ -261,13 +256,25 @@ int comprueba(){
 			}
 			continue;
 		}else{
-				clrscr();
-				printf("\n\tEmpate");
-				win=0;
-				lose=0;
-				break;
-			}
+			win=0;
+			lose=0;
+			break;
+		}
 	}
+
+	for (j=0;j<3;j++){
+        for(i=0;i<3;i++){
+            if(xo[i][j]!=0){
+				lleno++;
+				if (lleno==9){
+					i=3;
+					j=3;
+					return 0;
+				}
+				continue;
+			} 
+        }
+    }
 
     return 1;
 }
