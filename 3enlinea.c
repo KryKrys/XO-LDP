@@ -159,6 +159,11 @@ int comprueba(){
 						x=3;
                    	 return 0;
 				}
+				continue;
+			}else{
+				win=0;
+				lose=0;
+				break;
 			}
 		}
 	}
