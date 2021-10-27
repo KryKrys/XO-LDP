@@ -138,7 +138,7 @@ int comprueba(){
 	int i, j, x,win=0;
 	int lose=0;
 
-	/*horizontales*/
+	/*Recorre horizontales en busca de semejantes*/
     for(x=0;x<3;x++){
 		for(i=0;i<3;i++){
 			if(xo[x][i]==1){
@@ -147,28 +147,27 @@ int comprueba(){
 					printf("\n\tGanaste c:\n");
 					i=3;
 					x=3;
+					lose=0;
                     return 0;
 				}
 				continue;
-			}else{
+				lose+=1;
+			}else if(lose==3){
 				if (xo[x][i]==2){
-					lose+=1;
-					if (lose==3) {
 						printf("\n\tGana el jugador 2 c:\n");
 						i=3;
 						x=3;
                    	 return 0;
-					}
 				}
 				win=0;
 				break;
 			}
 		}
 	}
-		
+	lose=0;		
 	win=0;
 
-    /*verticales*/
+    /*Recorre verticales en busca de semejantes*/
 	for(x=0;x<3;x++){
 		for(i=0;i<3;i++){
 			if(xo[i][x]==1){
@@ -177,28 +176,27 @@ int comprueba(){
 					printf("\n\tGanaste c:\n");
 					i=3;
 					x=3;
+					lose=0;
                     return 0;
 				}
 				continue;
-			}else{
+				lose+=1;
+			}else if(lose==3){
 				if (xo[x][i]==2){
-					lose+=1;
-					if (lose==3) {
 						printf("\n\tGanaste c:\n");
 						i=3;
 						x=3;
                    	 return 0;
-					}
 				}
 				win=0;
 				break;
 			}
 		}
 	}	
-
+	lose=0;
 	win=0;
 
-    /*diagonal principal*/
+    /*Recorre diagonal principal en busca de semejantes*/
 	for(i=0;i<3;i++){
 		for(j=0;j<3;j++){
 			if(j==i){
@@ -208,27 +206,26 @@ int comprueba(){
 						printf("\n\tGanaste c:\n");
 						i=3;
 						x=3;
+						lose=0;
                         return 0;
 					}
 					continue;
-				}else{
-					lose+=1;
-					if (lose==3) {
+						lose+=1;
+				}else if(lose==3){
 						printf("\n\tGanaste c:\n");
 						i=3;
 						x=3;
                    	 return 0;
-					}
 					win=0;
 					break;
 				}
 			}
 		}
 	}
-
+	lose=0;
 	win=0;
 
-    /*diagonal secundaria*/
+    /*Recorre diagonal secundaria en busca de semejantes*/
 	for(i=0;i<3;i++){
 		if (xo[i][(3-1)-i]==1){
 			win+=1;
@@ -236,17 +233,16 @@ int comprueba(){
 				printf("\n\tGanaste c:\n");
 				i=3;
 				x=3;
+				lose=0;
                 return 0;
 			}
 			continue;
-		}else{
 			lose+=1;
-			if (lose==3) {
+		}else if(lose==3){
 				printf("\n\tGanaste c:\n");
 				i=3;
 				x=3;
                 return 0;
-			}
 			win=0;
 			break;
 		}
