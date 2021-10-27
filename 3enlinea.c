@@ -179,7 +179,6 @@ int comprueba(){
 					printf("\n\tGanaste c:\n");
 					i=3;
 					x=3;
-					break;
                     return 0;
 				}
 				continue;
@@ -190,15 +189,17 @@ int comprueba(){
 						printf("\n\tGanaste c:\n");
 						i=3;
 						x=3;
-					 break;
                    	 return 0;
 				}
+				continue;
 				
+			}else{
+				win=0;
+				lose=0;
+				break;
 			}
 		}
 	}	
-	lose=0;
-	win=0;
 
     /*Recorre diagonal principal en busca de semejantes*/
 	for(i=0;i<3;i++){
@@ -211,7 +212,6 @@ int comprueba(){
 						printf("\n\tGanaste c:\n");
 						i=3;
 						x=3;
-						break;
                         return 0;
 					}
 					continue;
@@ -221,15 +221,18 @@ int comprueba(){
 						printf("\n\tGanaste c:\n");
 						i=3;
 						x=3;
-					 break;
                    	 return 0;
 					}
+					continue;
 				}
+				else{
+				win=0;
+				lose=0;
+				break;
+			}
 			}
 		}
 	}
-	lose=0;
-	win=0;
 
     /*Recorre diagonal secundaria en busca de semejantes*/
 	for(i=0;i<3;i++){
@@ -239,7 +242,6 @@ int comprueba(){
 				printf("\n\tGanaste c:\n");
 				i=3;
 				x=3;
-				break;
                 return 0;
 			}
 			continue;
@@ -249,10 +251,14 @@ int comprueba(){
 				printf("\n\tGanaste c:\n");
 				i=3;
 				x=3;
-				break;
                 return 0;
 			}
-		}
+			continue;
+		}else{
+				win=0;
+				lose=0;
+				break;
+			}
 	}
 
     return 1;
