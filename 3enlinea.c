@@ -147,20 +147,18 @@ int comprueba(){
 					printf("\n\tGanaste c:\n");
 					i=3;
 					x=3;
-					lose=0;
                     return 0;
 				}
 				continue;
+			}else if (xo[x][i]==2){
 				lose+=1;
-			}else if(lose==3){
-				if (xo[x][i]==2){
+				if(lose==3){
+					
 						printf("\n\tGana el jugador 2 c:\n");
 						i=3;
 						x=3;
                    	 return 0;
 				}
-				win=0;
-				break;
 			}
 		}
 	}
@@ -176,20 +174,21 @@ int comprueba(){
 					printf("\n\tGanaste c:\n");
 					i=3;
 					x=3;
-					lose=0;
+					break;
                     return 0;
 				}
 				continue;
+				
+			}else if (xo[x][i]==2){
 				lose+=1;
-			}else if(lose==3){
-				if (xo[x][i]==2){
+				if(lose==3){
 						printf("\n\tGanaste c:\n");
 						i=3;
 						x=3;
+					 break;
                    	 return 0;
 				}
-				win=0;
-				break;
+				
 			}
 		}
 	}	
@@ -201,23 +200,25 @@ int comprueba(){
 		for(j=0;j<3;j++){
 			if(j==i){
 				if(xo[j][i]==1){
+					
 					win+=1;
 					if (win==3) {
 						printf("\n\tGanaste c:\n");
 						i=3;
 						x=3;
-						lose=0;
+						break;
                         return 0;
 					}
 					continue;
-						lose+=1;
-				}else if(lose==3){
+				}else if(xo[j][i]==2){
+					lose+=1;
+					if(lose==3){
 						printf("\n\tGanaste c:\n");
 						i=3;
 						x=3;
+					 break;
                    	 return 0;
-					win=0;
-					break;
+					}
 				}
 			}
 		}
@@ -233,18 +234,19 @@ int comprueba(){
 				printf("\n\tGanaste c:\n");
 				i=3;
 				x=3;
-				lose=0;
+				break;
                 return 0;
 			}
 			continue;
+		}else if (xo[i][(3-1)-i]==2){
 			lose+=1;
-		}else if(lose==3){
+			if(lose==3){
 				printf("\n\tGanaste c:\n");
 				i=3;
 				x=3;
+				break;
                 return 0;
-			win=0;
-			break;
+			}
 		}
 	}
 
