@@ -161,6 +161,8 @@ int comprueba(){
 				}
 				continue;
 			}else{
+				clrscr();
+				printf("\n\tEmpate");
 				win=0;
 				lose=0;
 				break;
@@ -194,6 +196,8 @@ int comprueba(){
 				continue;
 				
 			}else{
+				clrscr();
+				printf("\n\tEmpate");
 				win=0;
 				lose=0;
 				break;
@@ -226,6 +230,8 @@ int comprueba(){
 					continue;
 				}
 				else{
+				clrscr();
+				printf("\n\tEmpate");
 				win=0;
 				lose=0;
 				break;
@@ -255,6 +261,8 @@ int comprueba(){
 			}
 			continue;
 		}else{
+				clrscr();
+				printf("\n\tEmpate");
 				win=0;
 				lose=0;
 				break;
