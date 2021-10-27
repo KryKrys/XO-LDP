@@ -184,7 +184,7 @@ int comprueba(){
 				}
 				continue;
 				
-			}else if (xo[x][i]==2){
+			}else if (xo[i][x]==2){
 				lose+=1;
 				if(lose==3){
 						printf("\n\tGanaste c:\n");
@@ -267,6 +267,7 @@ int comprueba(){
             if(xo[i][j]!=0){
 				lleno++;
 				if (lleno==9){
+					printf("\n\t Empatacion");
 					i=3;
 					j=3;
 					return 0;
