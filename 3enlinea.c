@@ -31,7 +31,7 @@ void jugador2(void);
 
 void main(){
     
-    int i,j;
+    int i,j,final=0;
     
     clrscr();
     
@@ -54,18 +54,24 @@ void main(){
             }
         }
 
-       	while(comprueba()!=0){
+       	while(final==0){
             clrscr();
-			
+
 			jugador1();
 			mostrar();
-			comprueba();
+			if (comprueba()!=0){
+				final=1;
+				printf("$$$");
+			}
             
 			getch();
 
 			jugador2();
 			mostrar();
-			comprueba();
+			if (comprueba()!=0){
+				final=1;
+				printf("$$$");
+			}
             getch();
 
         }
@@ -91,6 +97,7 @@ void jugador1(){ /*marca 1*/
 	clrscr();
             /*x=1 o=2*/
 		while(repetir==0){
+			clrscr();
 			printf("Jugador 1: %c",marca1);
 			printf("\nPosicion donde marcar jugador 1: ");
             printf("COLUMNA: ");
