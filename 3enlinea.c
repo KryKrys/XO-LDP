@@ -56,17 +56,16 @@ void main(){
 
        	while(comprueba()!=0){
             clrscr();
-            mostrar();
-
-            printf("\nJugador 1: %c\n",marca1);
-            printf("Jugador 2: %c",marca2);
-
+			
 			jugador1();
 			mostrar();
-            getch();
-			jugador2();
+			comprueba();
+            
+			getch();
 
+			jugador2();
 			mostrar();
+			comprueba();
             getch();
 
         }
@@ -92,6 +91,7 @@ void jugador1(){ /*marca 1*/
 	clrscr();
             /*x=1 o=2*/
 		while(repetir==0){
+			printf("Jugador 1: %c",marca1);
 			printf("\nPosicion donde marcar jugador 1: ");
             printf("COLUMNA: ");
             scanf("%d",&posx);
@@ -115,6 +115,7 @@ void jugador2(){
 	
 	while(repetir==0){
 		clrscr();
+		printf("Jugador 2: %c",marca2);
 		printf("\nPosicion donde marcar jugdor 2: ");
     	printf("COLUMNA: ");
     	scanf("%d",&posx);
@@ -154,7 +155,6 @@ int comprueba(){
 			}else if (xo[x][i]==2){
 				lose+=1;
 				if(lose==3){
-					
 						printf("\n\tGana el jugador 2 c:\n");
 						i=3;
 						x=3;
@@ -207,7 +207,6 @@ int comprueba(){
 		for(j=0;j<3;j++){
 			if(j==i){
 				if(xo[j][i]==1){
-					
 					win+=1;
 					if (win==3) {
 						printf("\n\tGanaste c:\n");
