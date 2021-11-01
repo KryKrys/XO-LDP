@@ -23,11 +23,13 @@ int xo[3][3]={
     ,0,0,0
 };
 char marca1,marca2,rep;
+FILE *archivo = fopen("C://TC20//registro.txt","a+b");
 
 int comprueba(void);
 void mostrar(void);
 void jugador1(void);
 void jugador2(void);
+void historial(void);
 
 void main(){
     
@@ -71,7 +73,7 @@ void main(){
 			if (comprueba()==0){
 				final=1;
 			}
-			
+
             getch();
 
         }
