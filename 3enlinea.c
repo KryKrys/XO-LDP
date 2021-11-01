@@ -62,7 +62,6 @@ void main(){
 			if (comprueba()==0){
 				final=1;
 				break;
-				printf("$$$");
 			}
             
 			getch();
@@ -71,8 +70,8 @@ void main(){
 			mostrar();
 			if (comprueba()==0){
 				final=1;
-				printf("$$$");
 			}
+			
             getch();
 
         }
@@ -277,7 +276,7 @@ int comprueba(){
 	}
 	lose=0;		
 	win=0;
-	
+
 	for (j=0;j<3;j++){
         for(i=0;i<3;i++){
             if(xo[i][j]!=0){
