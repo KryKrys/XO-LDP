@@ -59,8 +59,9 @@ void main(){
 
 			jugador1();
 			mostrar();
-			if (comprueba()!=0){
+			if (comprueba()==0){
 				final=1;
+				break;
 				printf("$$$");
 			}
             
@@ -68,7 +69,7 @@ void main(){
 
 			jugador2();
 			mostrar();
-			if (comprueba()!=0){
+			if (comprueba()==0){
 				final=1;
 				printf("$$$");
 			}
@@ -147,6 +148,9 @@ int comprueba(){
 	int lose=0;
 	int lleno=0;
 
+	win=0;
+	lose=0;
+	lleno=0;
 	/*Recorre horizontales en busca de semejantes*/
     for(x=0;x<3;x++){
 		for(i=0;i<3;i++){
@@ -162,10 +166,10 @@ int comprueba(){
 			}else if (xo[x][i]==2){
 				lose+=1;
 				if(lose==3){
-						printf("\n\tGana el jugador 2 c:\n");
-						i=3;
-						x=3;
-                   	 return 0;
+					printf("\n\tGana el jugador 2 c:\n");
+					i=3;
+					x=3;
+                   	return 0;
 				}
 				continue;
 			}else{
@@ -194,10 +198,10 @@ int comprueba(){
 			}else if (xo[i][x]==2){
 				lose+=1;
 				if(lose==3){
-						printf("\n\tGanaste c:\n");
-						i=3;
-						x=3;
-                   	 return 0;
+					printf("\n\tGanaste c:\n");
+					i=3;
+					x=3;
+                   	return 0;
 				}
 				continue;
 				
@@ -209,6 +213,8 @@ int comprueba(){
 		}
 	}	
 
+	lose=0;		
+	win=0;
     /*Recorre diagonal principal en busca de semejantes*/
 	for(i=0;i<3;i++){
 		for(j=0;j<3;j++){
@@ -240,6 +246,8 @@ int comprueba(){
 			}
 		}
 	}
+	lose=0;		
+	win=0;
 
     /*Recorre diagonal secundaria en busca de semejantes*/
 	for(i=0;i<3;i++){
@@ -267,7 +275,9 @@ int comprueba(){
 			break;
 		}
 	}
-
+	lose=0;		
+	win=0;
+	
 	for (j=0;j<3;j++){
         for(i=0;i<3;i++){
             if(xo[i][j]!=0){
@@ -294,4 +304,4 @@ void mostrar(){
         }
         printf("\n");
     }
-}
+}
