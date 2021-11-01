@@ -23,7 +23,7 @@ int xo[3][3]={
     ,0,0,0
 };
 char marca1,marca2,rep;
-FILE *archivo = fopen("C://TC20//registro.txt","a+b");
+
 
 int comprueba(void);
 void mostrar(void);
@@ -34,6 +34,7 @@ void historial(void);
 void main(){
     
     int i,j,final=0;
+	FILE *archivo = fopen("C:\TC20\FICHEROSregistro.txt","a+b");
     
     clrscr();
     
@@ -305,4 +306,4 @@ void mostrar(){
         }
         printf("\n");
     }
-}
+}
