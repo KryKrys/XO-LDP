@@ -25,6 +25,7 @@ int xo[3][3]={
 char marca1,marca2,rep;
 
 
+
 int comprueba(void);
 void mostrar(void);
 void jugador1(void);
@@ -34,6 +35,7 @@ void historial(void);
 void main(){
     
     int i,j,final=0;
+	/*Abre archivo de registro*/
 	FILE *archivo = fopen("C:\TC20\FICHEROSregistro.txt","a+b");
     
     clrscr();
@@ -146,94 +148,111 @@ void jugador2(){
 }
 
 int comprueba(){
-	int i, j, x,win=0;
-	int lose=0;
+	int i, j, x;
 	int lleno=0;
+	int win=0, lose=0;
 
-	win=0;
-	lose=0;
-	lleno=0;
+	
 	/*Recorre horizontales en busca de semejantes*/
     for(x=0;x<3;x++){
 		for(i=0;i<3;i++){
 			if(xo[x][i]==1){
-				win+=1;
+				win++;
 				if (win==3) {
-					printf("\n\tGanaste c:\n");
+					printf("\n\tGanaste X c: H 	\n");
 					i=3;
 					x=3;
                     return 0;
+					break;
+					}else{
+						win=0;
+						lose=0;
+					}
 				}
-				continue;
-			}else if (xo[x][i]==2){
-				lose+=1;
+				}
+			}
+			for(x=0;x<3;x++){
+				for(i=0;i<3;i++){
+			if (xo[x][i]==2){
+				lose++;
 				if(lose==3){
-					printf("\n\tGana el jugador 2 c:\n");
+					printf("\n\tGanaste O c: H\n");
 					i=3;
 					x=3;
                    	return 0;
-				}
-				continue;
-			}else{
+					break;
+				}else{
 				win=0;
 				lose=0;
 				break;
+				}
+
 			}
 		}
 	}
-	lose=0;		
-	win=0;
+	
+	lose=NULL;		
+	win=NULL;
 
     /*Recorre verticales en busca de semejantes*/
 	for(x=0;x<3;x++){
 		for(i=0;i<3;i++){
 			if(xo[i][x]==1){
-				win+=1;
+				win++;
 				if (win==3) {
-					printf("\n\tGanaste c:\n");
+					printf("\n\tGanaste X c: V\n");
 					i=3;
 					x=3;
                     return 0;
-				}
-				continue;
-				
-			}else if (xo[i][x]==2){
-				lose+=1;
+					break;
+				}else{
+					win=0;
+					lose=0;
+					break;
+				}	
+			}
+		}
+	}
+	
+	for(x=0;x<3;x++){
+			for(i=0;i<3;i++){
+			if (xo[i][x]==2){
+				lose++;
 				if(lose==3){
-					printf("\n\tGanaste c:\n");
+					printf("\n\tGanaste O c: V\n");
 					i=3;
 					x=3;
                    	return 0;
-				}
-				continue;
-				
+					break;
 			}else{
 				win=0;
 				lose=0;
 				break;
 			}
-		}
-	}	
 
-	lose=0;		
-	win=0;
+		}
+			
+	}
+		}
+	lose=NULL;		
+	win=NULL;
     /*Recorre diagonal principal en busca de semejantes*/
 	for(i=0;i<3;i++){
 		for(j=0;j<3;j++){
 			if(j==i){
 				if(xo[j][i]==1){
-					win+=1;
+					win++;
 					if (win==3) {
-						printf("\n\tGanaste c:\n");
+						printf("\n\tGanaste X c: D\n");
 						i=3;
 						x=3;
                         return 0;
 					}
 					continue;
 				}else if(xo[j][i]==2){
-					lose+=1;
+					lose++;
 					if(lose==3){
-						printf("\n\tGanaste c:\n");
+						printf("\n\tGanaste O c: D\n");
 						i=3;
 						x=3;
                    	 return 0;
@@ -248,24 +267,25 @@ int comprueba(){
 			}
 		}
 	}
-	lose=0;		
-	win=0;
+	
+	lose=NULL;		
+	win=NULL;
 
     /*Recorre diagonal secundaria en busca de semejantes*/
-	for(i=0;i<3;i++){
+for(i=0;i<3;i++){
 		if (xo[i][(3-1)-i]==1){
-			win+=1;
+			win++;
 			if (win==3) {
-				printf("\n\tGanaste c:\n");
+				printf("\n\tGanaste X c:DI\n");
 				i=3;
 				x=3;
                 return 0;
 			}
 			continue;
 		}else if (xo[i][(3-1)-i]==2){
-			lose+=1;
+			lose++;
 			if(lose==3){
-				printf("\n\tGanaste c:\n");
+				printf("\n\tGanaste O c: DI\n");
 				i=3;
 				x=3;
                 return 0;
@@ -276,9 +296,10 @@ int comprueba(){
 			lose=0;
 			break;
 		}
+		
 	}
-	lose=0;		
-	win=0;
+	lose=NULL;		
+	win=NULL;
 
 	for (j=0;j<3;j++){
         for(i=0;i<3;i++){
@@ -300,10 +321,12 @@ int comprueba(){
 
 void mostrar(){
     int i,j;
+
     for (j=0;j<3;j++){
         for(i=0;i<3;i++){
             printf("%d ",xo[i][j]);
         }
         printf("\n");
     }
+	
 }
