@@ -121,8 +121,8 @@ void jugador1(){ /*marca 1*/
             /*x=1 o=2*/
 		while(repetir==0){
 			clrscr();
-			printf("Jugador 1: %c",player1.marca);
-			printf("\nPosicion donde marcar jugador 1: ");
+			printf("%s: %c",player1.name,player1.marca);
+			printf("\nPosicion donde marcar %s: ",  player1.name);
             printf("COLUMNA: ");
             scanf("%d",&posx);
             printf("FILA: ");
@@ -145,8 +145,8 @@ void jugador2(){
 	
 	while(repetir==0){
 		clrscr();
-		printf("Jugador 2: %c",player2.marca);
-		printf("\nPosicion donde marcar jugdor 2: ");
+		printf("%s: %c",player2.name,player2.marca);
+		printf("\nPosicion donde marcar %s: ", player2.name);
     	printf("COLUMNA: ");
     	scanf("%d",&posx);
     	printf("FILA: ");
