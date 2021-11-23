@@ -16,6 +16,7 @@
 #define N 110
 #define O 111
 #define X 120
+#define LONG 20
 
 int xo[3][3]={
     0,0,0,
@@ -23,7 +24,6 @@ int xo[3][3]={
     ,0,0,0
 };
 char marca1,marca2,rep;
-FILE *archivo = fopen("C://TC20//registro.txt","a+b");
 
 int comprueba(void);
 void mostrar(void);
@@ -31,21 +31,32 @@ void jugador1(void);
 void jugador2(void);
 void historial(void);
 
+struct jugador{
+	char nombre[20];
+	char marca;
+}
+
+
 void main(){
-    
+    /*FILE *archivo = fopen("C:/TC20/FICHEROS/registro.txt","a+b");*/
     int i,j,final=0;
     
+	struct jugador player1;
+	struct jugador player2;
+	
     clrscr();
+
+	
     
     printf("Elija que llevara el jugador 1:   x       o \n");
         do
-            marca1=getch();
-        while(tolower(marca1)!=X && tolower(marca1)!=O);
+            player1.marca=getch();
+        while(tolower(player1.marca)!=X && tolower(player1.marca)!=O);
 
-        if (marca1==X) {
-            marca2=O;
+        if (player1.marca==X) {
+            player2.marca=O;
         }else{
-            marca2=X;
+            player2.marca=X;
         }
 
     do{
@@ -63,6 +74,8 @@ void main(){
 			mostrar();
 			if (comprueba()==0){
 				final=1;
+				freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+				fprintf(archivo,"Ganador:  %c",player1.marca);
 				break;
 			}
             
@@ -72,13 +85,12 @@ void main(){
 			mostrar();
 			if (comprueba()==0){
 				final=1;
+				freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+				fprintf(archivo,"Ganador:  %c",player2.marca);
 			}
-
-            getch();
-
+			getch();
         }
 
-        getch();
         clrscr();
 		gotoxy(25,10);
 		textcolor(MAGENTA);
@@ -92,6 +104,7 @@ void main(){
         }while(tolower(rep)!=N && tolower(rep)!=S);
 
     }while(tolower(rep)!=N);
+	fclose(archivo);
 }
 
 void jugador1(){ /*marca 1*/
@@ -100,16 +113,16 @@ void jugador1(){ /*marca 1*/
             /*x=1 o=2*/
 		while(repetir==0){
 			clrscr();
-			printf("Jugador 1: %c",marca1);
+			printf("Jugador 1: %c",player1.marca);
 			printf("\nPosicion donde marcar jugador 1: ");
             printf("COLUMNA: ");
             scanf("%d",&posx);
             printf("FILA: ");
             scanf("%d",&posy);
-            if (marca1==X && xo[posx][posy]==0){
+            if (player1.marca==X && xo[posx][posy]==0){
                 xo[posx][posy]=1;
 				repetir=1;
-            }else if (marca1==O && xo[posx][posy]==0){
+            }else if (player1.marca==O && xo[posx][posy]==0){
                 xo[posx][posy]=2;
 				repetir=1;
             }else{
@@ -124,17 +137,17 @@ void jugador2(){
 	
 	while(repetir==0){
 		clrscr();
-		printf("Jugador 2: %c",marca2);
+		printf("Jugador 2: %c",player2.marca);
 		printf("\nPosicion donde marcar jugdor 2: ");
     	printf("COLUMNA: ");
     	scanf("%d",&posx);
     	printf("FILA: ");
    		scanf("%d",&posy);
            /*x=1 o=2*/
-		if (marca2==X && xo[posx][posy]==0){
+		if (player2.marca==X && xo[posx][posy]==0){
 			xo[posx][posy]=1;
 			repetir=1;
-		}else if (marca2==O && xo[posx][posy]==0){
+		}else if (player2.marca==O && xo[posx][posy]==0){
 			xo[posx][posy]=2;
 			repetir=1;
 		}else{
@@ -158,19 +171,30 @@ int comprueba(){
 			if(xo[x][i]==1){
 				win+=1;
 				if (win==3) {
-					printf("\n\tGanaste c:\n");
+					printf("\n\tGana el jugador H 1 c:\n");
 					i=3;
 					x=3;
                     return 0;
 				}
-				continue;
-			}else if (xo[x][i]==2){
+				continue;	
+			}else{
+				win=0;
+				lose=0;
+				break;
+			}
+		}
+	}
+	lose=0;		
+	win=0;
+	for(x=0;x<3;x++){
+		for(i=0;i<3;i++){
+			if(xo[x][i]==2){
 				lose+=1;
-				if(lose==3){
-					printf("\n\tGana el jugador 2 c:\n");
+				if (lose==3) {
+					printf("\n\tGana el jugador H 2 c:\n");
 					i=3;
 					x=3;
-                   	return 0;
+                    return 0;
 				}
 				continue;
 			}else{
@@ -182,40 +206,45 @@ int comprueba(){
 	}
 	lose=0;		
 	win=0;
-
     /*Recorre verticales en busca de semejantes*/
 	for(x=0;x<3;x++){
 		for(i=0;i<3;i++){
 			if(xo[i][x]==1){
 				win+=1;
 				if (win==3) {
-					printf("\n\tGanaste c:\n");
+					printf("\n\tGana el jugador 1 V c:\n");
 					i=3;
 					x=3;
                     return 0;
 				}
 				continue;
-				
-			}else if (xo[i][x]==2){
+			}else{
+				lose=0;
+				win=0;
+				break;
+			}
+		}
+	}	
+	lose=0;		
+	win=0;
+	for(x=0;x<3;x++){
+		for(i=0;i<3;i++){
+			if(xo[i][x]==2){
 				lose+=1;
-				if(lose==3){
-					printf("\n\tGanaste c:\n");
+				if (lose==3) {
+					printf("\n\tGana el jugador V 2 c:\n");
 					i=3;
 					x=3;
-                   	return 0;
+                    return 0;
 				}
 				continue;
-				
 			}else{
 				win=0;
 				lose=0;
 				break;
 			}
 		}
-	}	
-
-	lose=0;		
-	win=0;
+	}
     /*Recorre diagonal principal en busca de semejantes*/
 	for(i=0;i<3;i++){
 		for(j=0;j<3;j++){
@@ -229,17 +258,7 @@ int comprueba(){
                         return 0;
 					}
 					continue;
-				}else if(xo[j][i]==2){
-					lose+=1;
-					if(lose==3){
-						printf("\n\tGanaste c:\n");
-						i=3;
-						x=3;
-                   	 return 0;
-					}
-					continue;
-				}
-				else{
+				}else{
 					win=0;
 					lose=0;
 					break;
@@ -249,21 +268,32 @@ int comprueba(){
 	}
 	lose=0;		
 	win=0;
+	for(i=0;i<3;i++){
+		for(j=0;j<3;j++){
+			if(j==i){
+				if(xo[j][i]==2){
+					lose+=1;
+					if (lose==3) {
+						printf("\n\tGanaste c:\n");
+						i=3;
+						x=3;
+                        return 0;
+					}
+					continue;
+				}else{
+					win=0;
+					lose=0;
+					break;
+				}
+			}
+		}
+	}
 
     /*Recorre diagonal secundaria en busca de semejantes*/
 	for(i=0;i<3;i++){
 		if (xo[i][(3-1)-i]==1){
 			win+=1;
 			if (win==3) {
-				printf("\n\tGanaste c:\n");
-				i=3;
-				x=3;
-                return 0;
-			}
-			continue;
-		}else if (xo[i][(3-1)-i]==2){
-			lose+=1;
-			if(lose==3){
 				printf("\n\tGanaste c:\n");
 				i=3;
 				x=3;
@@ -278,6 +308,23 @@ int comprueba(){
 	}
 	lose=0;		
 	win=0;
+	for(i=0;i<3;i++){
+		if (xo[i][(3-1)-i]==2){
+			lose+=1;
+			if (lose==3) {
+				printf("\n\tGanaste c:\n");
+				i=3;
+				x=3;
+                return 0;
+			}
+			continue;
+		}else{
+			win=0;
+			lose=0;
+			break;
+		}
+	}
+
 
 	for (j=0;j<3;j++){
         for(i=0;i<3;i++){
