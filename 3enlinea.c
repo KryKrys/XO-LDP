@@ -32,9 +32,9 @@ void jugador2(void);
 void historial(void);
 
 struct jugador{
-	char nombre[20];
+	char name[20];
 	char marca;
-}
+};
 
 
 void main(){
@@ -46,10 +46,10 @@ void main(){
 	struct jugador player1;
 	struct jugador player2;
 
-	
     clrscr();
 
-	printf("Ingrese un username para player1: %s",)
+	printf("Ingrese un username para player1: ");
+	scanf("%s",&player2.name);
 	
     
     printf("Elija que llevara el jugador 1:   x       o \n");
