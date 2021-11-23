@@ -32,7 +32,7 @@ void jugador2(void);
 void historial(void);
 
 struct jugador{
-	char name[LONG];
+	char name[20];
 	char marca;
 };
 
