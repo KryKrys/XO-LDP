@@ -176,11 +176,9 @@ int comprueba(){
 					i=3;
 					x=3;
                     return 0;
-					break;
-					}else{
-						win=0;
-						lose=0;
-					}
+				}else{
+					win=0;
+					lose=0;
 				}
 				continue;	
 			}else{
@@ -207,9 +205,8 @@ int comprueba(){
 				win=0;
 				lose=0;
 				break;
-				}
-
 			}
+
 		}
 	}
 	lose=0;		
@@ -298,7 +295,7 @@ int comprueba(){
 	}
 
     /*Recorre diagonal secundaria en busca de semejantes*/
-for(i=0;i<3;i++){
+	for(i=0;i<3;i++){
 		if (xo[i][(3-1)-i]==1){
 			win++;
 			if (win==3) {
