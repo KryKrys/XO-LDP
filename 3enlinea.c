@@ -23,7 +23,7 @@ int xo[3][3]={
     0,0,0
     ,0,0,0
 };
-char marca1,marca2,rep;
+char rep;
 
 int comprueba(void);
 void mostrar(void);
@@ -36,6 +36,8 @@ struct jugador{
 	char marca;
 };
 
+struct jugador player1;
+struct jugador player2;
 
 void main(){
     /*FILE *archivo = fopen("C:/TC20/FICHEROS/registro.txt","a+b");*/
@@ -43,8 +45,7 @@ void main(){
 	/*Abre archivo de registro*/
 	FILE *archivo = fopen("C:\TC20\FICHEROSregistro.txt","a+b");
     
-	struct jugador player1;
-	struct jugador player2;
+	
 
     clrscr();
 
