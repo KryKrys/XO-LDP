@@ -171,21 +171,18 @@ int comprueba(){
 	int win=0, lose=0;
 
 	
-	/*Recorre horizontales en busca de semejantes*/
+	/*Recorre verticales en busca de semejantes*/
     for(x=0;x<3;x++){
 		for(i=0;i<3;i++){
 			if(xo[x][i]==1){
-				win++;
+				win+=1;
 				if (win==3) {
 					printf("\n\tGana el jugador H 1 c:\n");
 					i=3;
 					x=3;
                     return 0;
-				}else{
-					win=0;
-					lose=0;
 				}
-				continue;	
+				continue;
 			}else{
 				win=0;
 				lose=0;
@@ -216,7 +213,7 @@ int comprueba(){
 	}
 	lose=0;		
 	win=0;
-    /*Recorre verticales en busca de semejantes*/
+    /*Recorre horizontales en busca de semejantes*/
 	for(x=0;x<3;x++){
 		for(i=0;i<3;i++){
 			if(xo[i][x]==1){
