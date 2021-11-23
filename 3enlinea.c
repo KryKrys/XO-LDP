@@ -32,7 +32,7 @@ void jugador2(void);
 void historial(void);
 
 struct jugador{
-	char name[20];
+	char name[LONG];
 	char marca;
 };
 
@@ -45,8 +45,6 @@ void main(){
 	/*Abre archivo de registro*/
 	FILE *archivo = fopen("C:\TC20\FICHEROSregistro.txt","a+b");
     
-	
-
     clrscr();
 
 	printf("Ingrese un username para player1: ");
