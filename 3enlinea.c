@@ -83,7 +83,7 @@ void main(){
 			if (comprueba()==0){
 				final=1;
 				freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
-				fprintf(archivo,"Ganador:  %s\n",player1.name);
+				fprintf(archivo,"Ganador player 1:  %s\n",player1.name);
 				break;
 			}
             
@@ -94,7 +94,7 @@ void main(){
 			if (comprueba()==0){
 				final=1;
 				freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
-				fprintf(archivo,"Ganador:  %s\n",player2.name);
+				fprintf(archivo,"Ganador player 2:  %s\n",player2.name);
 			}
 			getch();
         }
