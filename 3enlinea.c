@@ -24,11 +24,6 @@ int xo[3][3]={
     ,0,0,0
 };
 char marca1,marca2,rep;
-<<<<<<< HEAD
-=======
-
-
->>>>>>> e909ca81e00cb658596b56a09ab72726952df51e
 
 int comprueba(void);
 void mostrar(void);
@@ -50,9 +45,11 @@ void main(){
     
 	struct jugador player1;
 	struct jugador player2;
+
 	
     clrscr();
 
+	printf("Ingrese un username para player1: %s",)
 	
     
     printf("Elija que llevara el jugador 1:   x       o \n");
