@@ -43,15 +43,20 @@ void main(){
     /*FILE *archivo = fopen("C:/TC20/FICHEROS/registro.txt","a+b");*/
     int i,j,final=0;
 	/*Abre archivo de registro*/
-	FILE *archivo = fopen("C:\TC20\FICHEROSregistro.txt","a+b");
+	FILE *archivo = fopen("C:/TC20/FICHEROS/registro.txt","a+b");
     
     clrscr();
 
 	printf("Ingrese un username para player1: ");
-	scanf("%s",&player2.name);
+	scanf("%s",&player1.name);
 	
+	clrscr();
+
+	printf("Ingrese un username para player2: ");
+	scanf("%s",&player2.name);
+	clrscr();
     
-    printf("Elija que llevara el jugador 1:   x       o \n");
+    printf("Elija que llevara el jugador %s:   x       o \n", player1.name);
         do
             player1.marca=getch();
         while(tolower(player1.marca)!=X && tolower(player1.marca)!=O);
@@ -78,7 +83,7 @@ void main(){
 			if (comprueba()==0){
 				final=1;
 				freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
-				fprintf(archivo,"Ganador:  %c",player1.marca);
+				fprintf(archivo,"Ganador:  %s",player1.name);
 				break;
 			}
             
@@ -89,7 +94,7 @@ void main(){
 			if (comprueba()==0){
 				final=1;
 				freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
-				fprintf(archivo,"Ganador:  %c",player2.marca);
+				fprintf(archivo,"Ganador:  %s",player2.name);
 			}
 			getch();
         }
