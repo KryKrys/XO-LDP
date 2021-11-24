@@ -241,7 +241,7 @@ void juegaPC(){
 	clrscr();
             /*x=1 o=2*/
 		printf("PC esta pensando. . .");
-		delay(100);
+		delay(10);
 		while(repetir==0){
 			clrscr();
 
