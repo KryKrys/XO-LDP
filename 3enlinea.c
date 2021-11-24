@@ -39,65 +39,130 @@ struct jugador{
 struct jugador player1;
 struct jugador player2;
 
+char marca_comp;
+
 void main(){
     /*FILE *archivo = fopen("C:/TC20/FICHEROS/registro.txt","a+b");*/
     int i,j,final=0;
+	int opc;
+	int cont;
 	/*Abre archivo de registro*/
 	FILE *archivo = fopen("C:/TC20/FICHEROS/registro.txt","a+b");
     
     clrscr();
 
-	printf("Ingrese un username para player1: ");
-	scanf("%s",&player1.name);
-	
-	clrscr();
-
-	printf("Ingrese un username para player2: ");
-	scanf("%s",&player2.name);
-	clrscr();
-    
-    printf("Elija que llevara el jugador %s:   x       o \n", player1.name);
-        do
-            player1.marca=getch();
-        while(tolower(player1.marca)!=X && tolower(player1.marca)!=O);
-
-        if (player1.marca==X) {
-            player2.marca=O;
-        }else{
-            player2.marca=X;
-        }
+	printf("Elija el modo de juego: ");
+	printf("1. P1 vs P2\n2. P1 vs PC\n");
+	scanf("%d",&opc);
 
     do{
-        
-        for (j=0;j<3;j++){
-            for(i=0;i<3;i++){
-                xo[i][j]=0;
-            }
-        }
 
-       	while(final==0){
-            clrscr();
+		final=0;
+		i=0;
+		j=0;
+		cont=1;
+       	switch(opc){
+		
+			case 1: 
+				clrscr();
+				printf("Ingrese un username para player1: ");
+				scanf("%s",&player1.name);
+			
+				printf("Ingrese un username para player2: ");
+				scanf("%s",&player2.name);
+				clrscr();
 
-			jugador1();
-			mostrar();
-			if (comprueba()==0){
-				final=1;
-				freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
-				fprintf(archivo,"Ganador player 1:  %s\n",player1.name);
-				break;
-			}
-            
-			getch();
+				printf("Elija que llevara, %s:   x       o \n", player1.name);
+				do
+					player1.marca=getch();
+				while(tolower(player1.marca)!=X && tolower(player1.marca)!=O);
 
-			jugador2();
-			mostrar();
-			if (comprueba()==0){
-				final=1;
-				freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
-				fprintf(archivo,"Ganador player 2:  %s\n",player2.name);
-			}
-			getch();
-        }
+				if (player1.marca==X) {
+					player2.marca=O;
+				}else{
+					player2.marca=X;
+				}
+
+				for (j=0;j<3;j++){
+					for(i=0;i<3;i++){
+						xo[i][j]=0;
+					}
+				}
+
+				while(final==0){
+					clrscr();
+
+					jugador1();
+					mostrar();
+					if (comprueba()==0){
+						final=1;
+						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+						fprintf(archivo,"%d. Ganador player 1:  %s\n",cont,player1.name);
+						break;
+					}
+					
+					getch();
+
+					jugador2();
+					mostrar();
+					if (comprueba()==0){
+						final=1;
+						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+						fprintf(archivo,"%d.Ganador player 2:  %s\n",cont,player2.name);
+					}
+					getch();
+				}
+
+			break;
+
+			case 2:
+				clrscr();
+				printf("Ingrese un username para player: ");
+				scanf("%s",&player1.name);
+
+				printf("Elija que llevara, %s:   x       o \n", player1.name);
+				do
+					player1.marca=getch();
+				while(tolower(player1.marca)!=X && tolower(player1.marca)!=O);
+
+				if (player1.marca==X) {
+					marca_comp=O;
+				}else{
+					marca_comp=X;
+				}
+
+				for (j=0;j<3;j++){
+					for(i=0;i<3;i++){
+						xo[i][j]=0;
+					}
+				}
+
+				while(final==0){
+					clrscr();
+
+					jugador1();
+					mostrar();
+					if (comprueba()==0){
+						final=1;
+						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+						fprintf(archivo,"%d. Ganador player 1:  %s\n",cont,player1.name);
+					}
+					
+					getch();
+
+					jugador2();
+					mostrar();
+					if (comprueba()==0){
+						final=1;
+						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+						fprintf(archivo,"%d. Ganador PC",cont);
+					}
+					getch();
+				}
+
+
+			break;
+		}
 
         clrscr();
 		gotoxy(25,10);
@@ -110,6 +175,8 @@ void main(){
         do{
            	rep=getch();
         }while(tolower(rep)!=N && tolower(rep)!=S);
+
+		cont++;
 
     }while(tolower(rep)!=N);
 	fclose(archivo);
