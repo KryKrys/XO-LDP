@@ -3,6 +3,8 @@
 #include <conio.h>
 #include <ctype.h>
 #include <dos.h>
+#include <time.h>
+#include <dos.h>
 
 #define UP 72
 #define DOWN 80
@@ -29,6 +31,7 @@ int comprueba(void);
 void mostrar(void);
 void jugador1(void);
 void jugador2(void);
+void juegaPC(void);
 void historial(void);
 
 struct jugador{
@@ -150,7 +153,7 @@ void main(){
 					
 					getch();
 
-					jugador2();
+					juegaPC();
 					mostrar();
 					if (comprueba()==0){
 						final=1;
@@ -230,6 +233,30 @@ void jugador2(){
 			repetir=0;
 		}
 	}
+}
+
+void juegaPC(){
+	int posx,posy,repetir=0;
+	srand ((unsigned) time (NULL));
+	clrscr();
+            /*x=1 o=2*/
+		printf("PC esta pensando. . .");
+		while(repetir==0){
+			clrscr();
+
+			posx = rand() % 3;
+            posy = rand() % 3;
+			
+            if (marca_comp==X && xo[posx][posy]==0){
+                xo[posx][posy]=1;
+				repetir=1;
+            }else if (marca_comp==O && xo[posx][posy]==0){
+                xo[posx][posy]=2;
+				repetir=1;
+            }else{
+				repetir=0;
+            }
+		}
 }
 
 int comprueba(){
