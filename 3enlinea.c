@@ -149,6 +149,7 @@ void main(){
 						final=1;
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
 						fprintf(archivo,"%d. Ganador player 1:  %s\n",cont,player1.name);
+						rewid(archivo);
 					}
 					
 					getch();
@@ -159,6 +160,7 @@ void main(){
 						final=1;
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
 						fprintf(archivo,"%d. Ganador PC",cont);
+						rewind(archivo);
 					}
 					getch();
 				}
@@ -183,6 +185,7 @@ void main(){
 
     }while(tolower(rep)!=N);
 	fclose(archivo);
+
 }
 
 void jugador1(){ /*marca 1*/
