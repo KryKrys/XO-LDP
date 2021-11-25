@@ -150,7 +150,7 @@ void main(){
 						final=1;
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
 						fprintf(archivo,"%d. Ganador player 1:  %s\n",cont,player1.name);
-						rewid(archivo);
+						rewind(archivo);
 					}
 					
 					getch();
