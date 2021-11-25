@@ -61,11 +61,12 @@ void main(){
 	time(&hora);
     outtime = localtime(&hora);
 
-    clrscr();
+    
 
 
     do{
 
+		clrscr();
 		printf("Elija el modo de juego: \n");
 		printf("1. P1 vs P2\n2. P1 vs PC\n");
 		scanf("%d",&opc);
@@ -164,8 +165,6 @@ void main(){
 					jugador1();
 					mostrar();
 					if (comprueba()==0){
-						printf("1");
-						getch();
 						val=1;
 						rachas();
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
@@ -176,16 +175,11 @@ void main(){
 						break;
 					}
 
-					
-					getch();
-					clrscr();
 					getch();
 					
 					juegaPC();
 					mostrar();
 					if (comprueba()==0){
-						printf("2");
-						getch();
 						val=3;
 						rachas();
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
