@@ -101,7 +101,7 @@ void main(){
 						final=1;
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
 						fprintf(archivo,"%d. Ganador player 1:  %s\n",cont,player1.name);
-						break;
+						rewind(archivo);
 					}
 					
 					getch();
@@ -112,6 +112,7 @@ void main(){
 						final=1;
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
 						fprintf(archivo,"%d.Ganador player 2:  %s\n",cont,player2.name);
+						rewind(archivo);
 					}
 					getch();
 				}
