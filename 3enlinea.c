@@ -44,6 +44,9 @@ struct jugador{
 struct jugador player1;
 struct jugador player2;
 
+struct tm *outtime;
+time_t hora;
+
 char marca_comp;
 
 void main(){
@@ -51,9 +54,13 @@ void main(){
     int i,j,final=0;
 	int opc;
 	int cont=1;
+	
 	/*Abre archivo de registro*/
 	FILE *archivo = fopen("C:/TC20/FICHEROS/registro.txt","w+b");
     
+	time(&hora);
+    outtime = localtime(&hora);
+
     clrscr();
 
 
@@ -104,6 +111,7 @@ void main(){
 						final=1;
 						rachas();
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+						fprintf(archivo,"%.19s\n", asctime(outtime));
 						fprintf(archivo,"%d. Ganador player 1:  %s [%d]\n",cont,player1.name,e);
 						rewind(archivo);
 						break;
@@ -118,6 +126,7 @@ void main(){
 						final=1;
 						rachas();
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+						fprintf(archivo,"%.19s\n", asctime(outtime));
 						fprintf(archivo,"%d.Ganador player 2:  %s [%d]\n",cont,player2.name,e);
 						rewind(archivo);
 						break;
@@ -160,6 +169,7 @@ void main(){
 						val=1;
 						rachas();
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+						fprintf(archivo,"%.19s\n", asctime(outtime));
 						fprintf(archivo,"%d. Ganador player 1:  %s [%d]\n",cont,player1.name,e);
 						rewind(archivo);
 						final=1;
@@ -179,6 +189,7 @@ void main(){
 						val=3;
 						rachas();
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+						fprintf(archivo,"%.19s\n", asctime(outtime));
 						fprintf(archivo,"%d. Ganador PC [%d]\n",cont,e);
 						rewind(archivo);
 						final=1;
