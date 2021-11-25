@@ -204,6 +204,7 @@ void main(){
         }while(tolower(rep)!=N && tolower(rep)!=S);
 
 		cont++;
+		clrscr();
 
     }while(tolower(rep)!=N);
 	fclose(archivo);
@@ -497,4 +498,4 @@ void rachas(){
 		 e=0;
 		 e1=0;
 	 }
-}
+}
