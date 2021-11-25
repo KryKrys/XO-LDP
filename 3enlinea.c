@@ -54,7 +54,7 @@ void main(){
     
     clrscr();
 
-	printf("Elija el modo de juego: ");
+	printf("Elija el modo de juego: \n");
 	printf("1. P1 vs P2\n2. P1 vs PC\n");
 	scanf("%d",&opc);
 
