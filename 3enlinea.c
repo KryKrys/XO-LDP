@@ -26,7 +26,7 @@ int xo[3][3]={
     ,0,0,0
 };
 char rep;
-int e, val=0;
+int e=0,e1=0,e2=0, val=0;
 
 int comprueba(void);
 void mostrar(void);
@@ -482,21 +482,18 @@ void mostrar(){
 	
 }
 void rachas(){
-	if(val==1){
-	for(e=1;e<5;e++){
-        break;
-		
-	}
-	 }else if(val==2){
-	for(e=1;e<5;e++){
-        break;
-		
-	}
-	 }else if(val==3){
-		 for(e=1;e<5;e++){
-        break;
-		
-	}
 
+	if(val==1){
+		e+=1;
+		e1=0;
+		e2=0;
+	 }else if(val==2){
+		e1+=1;
+		e=0;
+		e2=0;
+	}else if(val==3){
+		 e2+=1;
+		 e=0;
+		 e1=0;
 	 }
 }
