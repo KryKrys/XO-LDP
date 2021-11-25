@@ -105,6 +105,7 @@ void main(){
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
 						fprintf(archivo,"%d. Ganador player 1:  %s [%d]\n",cont,player1.name,e);
 						rewind(archivo);
+						break;
 					}
 					
 					getch();
@@ -118,6 +119,7 @@ void main(){
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
 						fprintf(archivo,"%d.Ganador player 2:  %s [%d]\n",cont,player2.name,e);
 						rewind(archivo);
+						break;
 					}
 					getch();
 				}
@@ -155,17 +157,18 @@ void main(){
 						printf("1");
 						getch();
 						val=1;
-						final=1;
 						rachas();
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
 						fprintf(archivo,"%d. Ganador player 1:  %s [%d]\n",cont,player1.name,e);
 						rewind(archivo);
+						final=1;
+						break;
 					}
 
+					
+					getch();
 					clrscr();
 					getch();
-					
-
 					
 					juegaPC();
 					mostrar();
@@ -173,11 +176,12 @@ void main(){
 						printf("2");
 						getch();
 						val=3;
-						final=1;
 						rachas();
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
 						fprintf(archivo,"%d. Ganador PC [%d]\n",cont,e);
 						rewind(archivo);
+						final=1;
+						break;
 					}
 					getch();
 				}
