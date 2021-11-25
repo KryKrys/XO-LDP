@@ -26,6 +26,7 @@ int xo[3][3]={
     ,0,0,0
 };
 char rep;
+int e, val=0;
 
 int comprueba(void);
 void mostrar(void);
@@ -33,6 +34,7 @@ void jugador1(void);
 void jugador2(void);
 void juegaPC(void);
 void historial(void);
+void rachas(void);
 
 struct jugador{
 	char name[LONG];
@@ -98,9 +100,11 @@ void main(){
 					jugador1();
 					mostrar();
 					if (comprueba()==0){
+						val=1;
 						final=1;
+						rachas();
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
-						fprintf(archivo,"%d. Ganador player 1:  %s\n",cont,player1.name);
+						fprintf(archivo,"%d. Ganador player 1:  %s [%d]\n",cont,player1.name,e);
 						rewind(archivo);
 					}
 					
@@ -109,9 +113,11 @@ void main(){
 					jugador2();
 					mostrar();
 					if (comprueba()==0){
+						val=2;
 						final=1;
+						rachas();
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
-						fprintf(archivo,"%d.Ganador player 2:  %s\n",cont,player2.name);
+						fprintf(archivo,"%d.Ganador player 2:  %s [%d]\n",cont,player2.name,e);
 						rewind(archivo);
 					}
 					getch();
@@ -147,9 +153,11 @@ void main(){
 					jugador1();
 					mostrar();
 					if (comprueba()==0){
+						val=1;
 						final=1;
+						rachas();
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
-						fprintf(archivo,"%d. Ganador player 1:  %s\n",cont,player1.name);
+						fprintf(archivo,"%d. Ganador player 1:  %s [%d]\n",cont,player1.name,e);
 						rewind(archivo);
 					}
 					
@@ -158,9 +166,11 @@ void main(){
 					juegaPC();
 					mostrar();
 					if (comprueba()==0){
+						val=3;
 						final=1;
+						rachas();
 						freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
-						fprintf(archivo,"%d. Ganador PC",cont);
+						fprintf(archivo,"%d. Ganador PC [%d]\n",cont,e);
 						rewind(archivo);
 					}
 					getch();
@@ -460,4 +470,23 @@ void mostrar(){
         printf("\n");
     }
 	
+}
+void rachas(){
+	if(val==1){
+	for(e=1;e<5;e++){
+        break;
+		
+	}
+	 }else if(val==2){
+	for(e=1;e<5;e++){
+        break;
+		
+	}
+	 }else if(val==3){
+		 for(e=1;e<5;e++){
+        break;
+		
+	}
+
+	 }
 }
