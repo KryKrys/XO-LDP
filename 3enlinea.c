@@ -50,9 +50,9 @@ void main(){
     /*FILE *archivo = fopen("C:/TC20/FICHEROS/registro.txt","a+b");*/
     int i,j,final=0;
 	int opc;
-	int cont;
+	int cont=1;
 	/*Abre archivo de registro*/
-	FILE *archivo = fopen("C:/TC20/FICHEROS/registro.txt","a+b");
+	FILE *archivo = fopen("C:/TC20/FICHEROS/registro.txt","w+b");
     
     clrscr();
 
@@ -65,7 +65,6 @@ void main(){
 		final=0;
 		i=0;
 		j=0;
-		cont=1;
        	switch(opc){
 		
 			case 1: 
@@ -153,6 +152,8 @@ void main(){
 					jugador1();
 					mostrar();
 					if (comprueba()==0){
+						printf("1");
+						getch();
 						val=1;
 						final=1;
 						rachas();
@@ -160,12 +161,17 @@ void main(){
 						fprintf(archivo,"%d. Ganador player 1:  %s [%d]\n",cont,player1.name,e);
 						rewind(archivo);
 					}
-					
-					getch();
 
+					clrscr();
+					getch();
+					
+
+					
 					juegaPC();
 					mostrar();
 					if (comprueba()==0){
+						printf("2");
+						getch();
 						val=3;
 						final=1;
 						rachas();
