@@ -56,11 +56,12 @@ void main(){
     
     clrscr();
 
-	printf("Elija el modo de juego: \n");
-	printf("1. P1 vs P2\n2. P1 vs PC\n");
-	scanf("%d",&opc);
 
     do{
+
+		printf("Elija el modo de juego: \n");
+		printf("1. P1 vs P2\n2. P1 vs PC\n");
+		scanf("%d",&opc);
 
 		final=0;
 		i=0;
@@ -496,4 +497,4 @@ void rachas(){
 		 e=0;
 		 e1=0;
 	 }
-}
+}
