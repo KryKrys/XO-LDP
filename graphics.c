@@ -6,19 +6,41 @@
 #include<button.h>
 
 void main(){
-    int driver=DETECT,modo,x,y;
+    int driver=DETECT,modo=VGAHI,x,y;
     /*button boton1;*/
     initgraph(&driver,&modo,"");
-    
-    setbkcolor(WHITE);
+    /*fondo*/
+    setbkcolor(LIGHTGRAY);
     setcolor(WHITE);
-    rectangle(0,0,639,479);
-    setfillstyle(CLOSE_DOT_FILL,MAGENTA);
-    floodfill(10,10,WHITE);
-    setcolor(DARKGRAY);
-    setfillstyle(SOLID_FILL,BROWN);
-    bar(100,70,530,410);
+
+    /*letras*/
+    setcolor(BLUE);
+    settextstyle(DEFAULT_FONT,0,5);
+    outtextxy(100,20,"Tic");
+    setcolor(LIGHTBLUE);
+    outtextxy(250,20,"Tac");
+    setcolor(CYAN);
+    outtextxy(400,20,"Toe");
+    /*circulo y cruz*/
+    setcolor(GREEN);
+    setlinestyle(0,1,3);
+    circle(50,40,20);
+    setcolor(LIGHTMAGENTA);
+    setlinestyle(0,1,3);
+    line(550,20,590,60);
+    line(590,20,550,60);
+    /*menu*/
+    setfillstyle(LINE_FILL,WHITE);
+    bar(100,80,530,420);
+    setfillstyle(SOLID_FILL,LIGHTGRAY);
+    bar(120,100,510,400);
+
+    setfillstyle(SOLID_FILL,DARKGRAY);
+    bar(200,100,310,400);
+
     getch();
+
+
 
     /*rectangle(170,90,470,390);
     /*verticales*
