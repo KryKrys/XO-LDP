@@ -18,22 +18,22 @@ void main(){
     int driver=DETECT, mode, color,modo,mposx,mposy,fill,past_color;
     
     initgraph(&driver,&mode," ");
-    setbkcolor(GREEN);
+    setbkcolor(BLACK);
     setcolor(WHITE);
-	rectangle(0, 0, 800, 20);
-    setfillstyle(SOLID_FILL,LIGHTBLUE);
-    floodfill(10,10, WHITE);
-	newButton(&boton1,2,2," XO ");
+	rectangle(0, 450, 800, 480);
+    setfillstyle(SOLID_FILL,LIGHTGRAY);
+    floodfill(5,450+10, WHITE);
+	newButton(&boton1,2,455," XO ");
     
     
     while(i<1){
         time(&hora);
         outtime = localtime(&hora);
         setcolor(BLACK);
-        outtextxy(500, 3, ("%.19s\n",asctime(outtime)));
+        outtextxy(500, 460, ("%.19s\n",asctime(outtime)));
         delay(1000);
-        bar(500,0,650,19);
-        setfillstyle(SOLID_FILL,LIGHTBLUE);
+        bar(500,450,650,480);
+        setfillstyle(SOLID_FILL,LIGHTGRAY);
         mver();
         }
     
