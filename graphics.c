@@ -36,7 +36,13 @@ void main(){
     bar(120,100,510,400);
 
     setfillstyle(SOLID_FILL,DARKGRAY);
-    bar(200,100,310,400);
+    bar(220,160,420,220);
+    bar(220,260,420,320);
+    setcolor(WHITE);
+    settextstyle(DEFAULT_FONT,0,3);
+    outtextxy(260,180,"Jugar");
+    outtextxy(260,280,"Salir");
+
 
     getch();
 
