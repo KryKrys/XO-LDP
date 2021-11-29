@@ -79,6 +79,7 @@ void pantalla_princip(){
 
 void ajustes(){
     int x,y;
+    button vspc, p1p2;
     clrscr();
     setbkcolor(LIGHTGRAY);
     setfillstyle(SOLID_FILL,LIGHTGRAY);
@@ -103,7 +104,7 @@ void ajustes(){
     settextstyle(0,0,3);
     outtextxy(290,110,"P1 vs PC");
     outtextxy(290,190,"P1 vs P2");
-
+    newbutton(&vspc,530,110,"v",LIGHTGRAY,BLACK);
     mver();
     do{
         while(mclick()!=1){
@@ -115,6 +116,8 @@ void ajustes(){
             mocultar();
             pantalla_princip();
         }
+
+        if(limit())
 
     }while(1);
 
