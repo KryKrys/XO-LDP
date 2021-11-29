@@ -7,6 +7,7 @@
 
 void ajustes(void);
 void pantalla_princip(void);
+void pantalla_juego(void);
 
 void main(){
     int driver=DETECT,modo=VGAHI;
@@ -113,6 +114,7 @@ void ajustes(){
     outtextxy(55,335,"Jugar!");
     newButton(&vspc,510,110," On  ",LIGHTGRAY,GREEN);
     newButton(&p1p2,510,190," Off ",LIGHTGRAY,RED);
+    effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,DEPRESSED); 
     mver();
     do{
         while(mclick()!=1){
@@ -123,20 +125,19 @@ void ajustes(){
         if(limit(x,y,5,5,95,45)){
             mocultar();
             pantalla_princip();
-        }
-
-        if(limit(x,y,vspc.x1,vspc.y1,vspc.x2,vspc.y2)){
+        } else if(limit(x,y,vspc.x1,vspc.y1,vspc.x2,vspc.y2)){
             newButton(&p1p2,510,190," OFF ",LIGHTGRAY,RED);
             newButton(&vspc,510,110," ON  ",LIGHTGRAY,GREEN);
             effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,DEPRESSED);
             effect3d(p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2,1,ELEVATE);
-        }
-
-        if (limit(x,y,p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2)){
+        } else if (limit(x,y,p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2)){
             newButton(&vspc,510,110," OFF ",LIGHTGRAY,RED);
             newButton(&p1p2,510,190," ON  ",LIGHTGRAY,GREEN);
             effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,ELEVATE);
             effect3d(p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2,1,DEPRESSED);
+        }else if (limit(x,y,35,295,205,405)){
+            mocultar();
+            pantalla_juego();
         }
 
 
@@ -144,15 +145,29 @@ void ajustes(){
 
 }
 
-    /*rectangle(170,90,470,390);
-    /*verticales*
+void pantalla_juego(){
+    int x,y;
+    button boton1;
+    clrscr();
+    setbkcolor(LIGHTGRAY);
+    setfillstyle(SOLID_FILL,DARKGRAY);
+    bar(0,0,640,480);
+
+    setcolor(WHITE);
+    rectangle(170,90,470,390);
     line(270,90,270,390);
     line(375,90,375,390);
-    /*horizontales*
     line(170,190,470,190);
     line(170,290,470,290);
+
+    setfillstyle(SOLID_FILL,LIGHTGRAY);
+    bar(10,10,90,40);
+    setcolor(DARKGRAY);
+    line(24,25,80,25);
+    line(24,25,43,35);
+    line(24,25,43,15);
     
-    newButton(&boton1,100,100,"Ajustes");
+    /*newButton(&boton1,100,100,"Ajustes",LIGHTGRAY,WHITE);*/
     mver();
 
     do{
@@ -160,14 +175,13 @@ void ajustes(){
 			x=mxpos(1);
 			y=mypos(1);
 		}
-		while(mclick()==1){
-			if(limit(x,y,boton1.x1,boton1.y1,boton1.x2,boton1.y2)){
-				mocultar();
-				effect3d(boton1.x1,boton1.y1,boton1.x2,boton1.y2,1,DEPRESSED);
-				setcolor(WHITE);
-				outtextxy(100,120,"Hola B(");
-				mver();
-			}
-		}
-		effect3d(boton1.x1,boton1.y1,boton1.x2,boton1.y2,1,ELEVATE);
-	}while(mclick()!=2);*/
+	
+		if(limit(x,y,5,5,95,45)){
+            mocultar();
+            pantalla_princip();
+        }
+
+	}while(1);
+}
+
+    
