@@ -26,10 +26,10 @@ void main(){
     ajustes();
     mver();
 
-    getch();
 }
 
      void screen(){
+        initgraph(&driver,&mode," ");
         setbkcolor(BLACK);
          setcolor(LIGHTGRAY);
 	    rectangle(0, 450, 800, 480);
@@ -64,10 +64,10 @@ void main(){
 				mver();
 
             }else if(limit(mposx,mposy,boton3.x1,boton3.y1,boton3.x2,boton3.y2)){
-				mocultar();
+                mocultar();
 				effect3d(boton3.x1,boton3.y1,boton3.x2,boton3.y2,1,DEPRESSED);
-				pantalla_princip();
 				mver();
+                pantalla_princip();
                 
 			}
 		}
@@ -75,7 +75,8 @@ void main(){
             reloj();
         }while(getch()==' ');*/
 		effect3d(boton1.x1,boton1.y1,boton1.x2,boton1.y2,1,ELEVATE);
-	}while(getch()==' ');
+	}while(1);
+    getch();
     }
 
 
@@ -140,12 +141,13 @@ void pantalla_princip(){
         }
 
         if(limit(x,y,215,255,425,325)){
-            closegraph();
             mocultar();
+            clrscr();   
             screen();
             }
 
     }while(1);
+    
 }
 
 void ajustes(){
