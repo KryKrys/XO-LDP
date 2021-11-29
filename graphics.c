@@ -104,7 +104,8 @@ void ajustes(){
     settextstyle(0,0,3);
     outtextxy(290,110,"P1 vs PC");
     outtextxy(290,190,"P1 vs P2");
-    newbutton(&vspc,530,110,"v",LIGHTGRAY,BLACK);
+    newButton(&vspc,510,110,"On",LIGHTGRAY,BLACK);
+    newbutton(&p1p2,510,190,"Off",LIGHTGRAY,BLACK)
     mver();
     do{
         while(mclick()!=1){
@@ -117,7 +118,9 @@ void ajustes(){
             pantalla_princip();
         }
 
-        if(limit())
+        if(limit(x,y,vspc.x1,vspc.y1,vspc.x2,vspc.y2)){
+            effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,DEPRESSED);
+        }
 
     }while(1);
 
