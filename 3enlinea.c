@@ -52,7 +52,7 @@ char marca_comp;
 void main(){
     /*FILE *archivo = fopen("C:/TC20/FICHEROS/registro.txt","a+b");*/
     int i,j,final=0;
-	int opc;
+	int opc=1;
 	int cont=1;
 	
 	/*Abre archivo de registro*/
