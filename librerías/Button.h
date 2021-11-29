@@ -60,11 +60,11 @@ bool limit(int x0, int y0,int x1,int y1,int x2,int y2)
     return 0;
 }
 
-void drawButton(button* btn)
+void drawButton(button* btn,int color,int color2)
 {
     button button = *btn;
     setlinestyle(SOLID_LINE,1,1);
-    setfillstyle(SOLID_FILL,LIGHTGRAY);
+    setfillstyle(SOLID_FILL,color);
     bar(button.x1,button.y1,button.x2,button.y2);
 
     setcolor(button.effect==PRESS?BLACK:WHITE);
@@ -77,14 +77,14 @@ void drawButton(button* btn)
     
     settextstyle(SMALL_FONT,0,4);
     if(button.effect != SELECTED)
-        setcolor(BLACK);
+        setcolor(color2);
     else
-        setcolor(BLUE);
+        setcolor(color2);
 
     outtextxy(2 + button.x1,button.high/2-5 + button.y1, button.text);
 }
 
-void newButton(button* btn, int x, int y, char* text)
+void newButton(button* btn, int x, int y, char* text, int color, int color2)
 {
     button temp;
     temp.width = strlen(text) * 6;
@@ -96,6 +96,6 @@ void newButton(button* btn, int x, int y, char* text)
     temp.effect = UNPRESS;
     strcpy(temp.text,text);
     *btn = temp;
-    drawButton(btn);
+    drawButton(btn,color,color2);
 }
 #endif
