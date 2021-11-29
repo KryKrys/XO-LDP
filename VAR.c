@@ -11,7 +11,7 @@ void reloj(void);
 struct tm *outtime;
 time_t hora;
 int i=0;
-button boton1;
+button boton1, boton2, boton3;
 
 void main(){
     
@@ -23,7 +23,9 @@ void main(){
 	rectangle(0, 450, 800, 480);
     setfillstyle(SOLID_FILL,LIGHTGRAY);
     floodfill(5,450+10, WHITE);
-	newButton(&boton1,2,456," XO ", BLACK, WHITE);
+	newButton(&boton1,10,456," LESBIAN ", BLUE, WHITE);
+    newButton(&boton2,75,456," PPX ", BLUE, WHITE);
+    newButton(&boton3,115,456," XO ", BLUE, WHITE);
      mver();
         
     
@@ -42,6 +44,20 @@ void main(){
 			if(limit(mposx,mposy,boton1.x1,boton1.y1,boton1.x2,boton1.y2)){
 				mocultar();
 				effect3d(boton1.x1,boton1.y1,boton1.x2,boton1.y2,1,DEPRESSED);
+				setcolor(RED);
+				outtextxy(250,250,"LESBIAN OS");
+				mver();
+                
+			}else if(limit(mposx,mposy,boton2.x1,boton2.y1,boton2.x2,boton2.y2)){
+				mocultar();
+				effect3d(boton2.x1,boton2.y1,boton2.x2,boton2.y2,1,DEPRESSED);
+				setcolor(RED);
+				outtextxy(250,250,">Insertar presentacion aqui<");
+				mver();
+
+            }else if(limit(mposx,mposy,boton3.x1,boton3.y1,boton3.x2,boton3.y2)){
+				mocultar();
+				effect3d(boton3.x1,boton3.y1,boton3.x2,boton3.y2,1,DEPRESSED);
 				setcolor(RED);
 				outtextxy(250,250,"HOLA VAMO A JUGAR?");
 				mver();
