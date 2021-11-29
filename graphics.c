@@ -96,9 +96,9 @@ void ajustes(){
     settextstyle(0,0,4);
     outtextxy(200,20,"Modalidad");
     /*regresar*/
-    setfillstyle(SOLID_FILL,CYAN);
+    setfillstyle(SOLID_FILL,DARKGRAY);
     bar(20,10,100,40);
-    setcolor(DARKGRAY);
+    setcolor(LIGHTGRAY);
     line(34,25,90,25);
     line(34,25,53,35);
     line(34,25,53,15);
@@ -113,8 +113,8 @@ void ajustes(){
     outtextxy(60,150,"P1 vs PC");
     outtextxy(60,300,"P1 vs P2");
     outtextxy(420,235,"Jugar!");
-    newButton(&vspc,280,160," On  ",LIGHTGRAY,GREEN);
-    newButton(&p1p2,280,310," Off ",LIGHTGRAY,RED);
+    newButton(&vspc,280,160," ON  ",LIGHTGRAY,GREEN);
+    newButton(&p1p2,280,310," OFF ",LIGHTGRAY,RED);
     effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,DEPRESSED); 
     mver();
     do{
@@ -127,13 +127,13 @@ void ajustes(){
             mocultar();
             pantalla_princip();
         } else if(limit(x,y,vspc.x1,vspc.y1,vspc.x2,vspc.y2)){
-            newButton(&p1p2,510,190," OFF ",LIGHTGRAY,RED);
-            newButton(&vspc,510,110," ON  ",LIGHTGRAY,GREEN);
+            newButton(&p1p2,280,310," OFF ",LIGHTGRAY,RED);
+            newButton(&vspc,280,160," ON  ",LIGHTGRAY,GREEN);
             effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,DEPRESSED);
             effect3d(p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2,1,ELEVATE);
         } else if (limit(x,y,p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2)){
-            newButton(&vspc,510,110," OFF ",LIGHTGRAY,RED);
-            newButton(&p1p2,510,190," ON  ",LIGHTGRAY,GREEN);
+            newButton(&vspc,280,160," OFF ",LIGHTGRAY,RED);
+            newButton(&p1p2,280,310," ON  ",LIGHTGRAY,GREEN);
             effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,ELEVATE);
             effect3d(p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2,1,DEPRESSED);
         }else if (limit(x,y,405,195,575,305)){
@@ -163,15 +163,19 @@ void pantalla_juego(){
     line(170,290,470,290);
 
     /*regresar*/
-    setcolor(WHITE);
-    rectangle(10,10,90,40);
-    setfillstyle(SOLID_FILL,LIGHTCYAN);
-    floodfill(20,20,WHITE);
+    setfillstyle(SOLID_FILL,DARKGRAY);
+    bar(10,10,90,40);
     setlinestyle(0,0,3);
-    setcolor(DARKGRAY);
+    setcolor(LIGHTGRAY);
     line(24,25,80,25);
     line(24,25,43,35);
     line(24,25,43,15);
+
+    /*player*/
+    setcolor(DARKGRAY);
+    settextstyle(0,0,2);
+    outtextxy(30,290,"PLAYER 1");
+    outtextxy(500,290,"PLAYER 2");
     
     /*newButton(&boton1,100,100,"Ajustes",LIGHTGRAY,WHITE);*/
     mver();
@@ -181,10 +185,28 @@ void pantalla_juego(){
 			x=mxpos(1);
 			y=mypos(1);
 		}
-	
+        setcolor(WHITE);
 		if(limit(x,y,5,5,95,45)){
             mocultar();
             pantalla_princip();
+        }else if(limit(x,y,170,90,270,190)){
+            outtextxy(180,100,"0,0");
+        }else if (limit(x,y,270,90,370,190)){
+            outtextxy(280,100,"0,1");
+        }else if (limit(x,y,370,90,470,190)){
+            outtextxy(380,100,"0,2");
+        }else if (limit(x,y,170,190,270,290)){
+            outtextxy(180,200,"1,0");
+        }else if(limit(x,y,270,190,370,290)){
+            outtextxy(280,200,"1,1");
+        }else if(limit(x,y,370,190,470,290)){
+            outtextxy(380,200,"1,2");
+        }else if(limit(x,y,170,290,270,390)){
+            outtextxy(180,300,"2,0");
+        }else if(limit(x,y,270,290,370,390)){
+            outtextxy(280,300,"2,1");
+        }else if(limit(x,y,370,290,470,390)){
+            outtextxy(380,300,"2,2");
         }
 
 	}while(1);
