@@ -102,12 +102,15 @@ void ajustes(){
     line(24,25,43,35);
     line(24,25,43,15);
 
+    setfillstyle(LINE_FILL,WHITE);
+    bar(20,280,220,420);
     setfillstyle(SOLID_FILL,CYAN);
-    bar(10,10,90,40);
+    bar(40,300,200,400);
 
     settextstyle(0,0,3);
     outtextxy(290,110,"P1 vs PC");
     outtextxy(290,190,"P1 vs P2");
+    outtextxy(55,335,"Jugar!");
     newButton(&vspc,510,110," On  ",LIGHTGRAY,GREEN);
     newButton(&p1p2,510,190," Off ",LIGHTGRAY,RED);
     mver();
