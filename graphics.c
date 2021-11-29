@@ -89,31 +89,32 @@ void ajustes(){
 
     /*menu*/
     setfillstyle(LINE_FILL,WHITE);
-    bar(250,70,570,420);
+    bar(20,70,340,420);
     setfillstyle(SOLID_FILL,CYAN);
-    bar(270,90,550,400);
+    bar(40,90,320,400);
     setcolor(DARKGRAY);
     settextstyle(0,0,4);
-    outtextxy(250,20,"Modalidad");
+    outtextxy(200,20,"Modalidad");
     /*regresar*/
     setfillstyle(SOLID_FILL,CYAN);
-    bar(10,10,90,40);
+    bar(20,10,100,40);
     setcolor(DARKGRAY);
-    line(24,25,80,25);
-    line(24,25,43,35);
-    line(24,25,43,15);
-
+    line(34,25,90,25);
+    line(34,25,53,35);
+    line(34,25,53,15);
+    
+    /*jugar*/
     setfillstyle(LINE_FILL,WHITE);
-    bar(20,280,220,420);
+    bar(390,180,590,320);
     setfillstyle(SOLID_FILL,CYAN);
-    bar(40,300,200,400);
+    bar(410,200,570,300);
 
     settextstyle(0,0,3);
-    outtextxy(290,110,"P1 vs PC");
-    outtextxy(290,190,"P1 vs P2");
-    outtextxy(55,335,"Jugar!");
-    newButton(&vspc,510,110," On  ",LIGHTGRAY,GREEN);
-    newButton(&p1p2,510,190," Off ",LIGHTGRAY,RED);
+    outtextxy(60,150,"P1 vs PC");
+    outtextxy(60,300,"P1 vs P2");
+    outtextxy(420,235,"Jugar!");
+    newButton(&vspc,280,160," On  ",LIGHTGRAY,GREEN);
+    newButton(&p1p2,280,310," Off ",LIGHTGRAY,RED);
     effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,DEPRESSED); 
     mver();
     do{
@@ -135,7 +136,7 @@ void ajustes(){
             newButton(&p1p2,510,190," ON  ",LIGHTGRAY,GREEN);
             effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,ELEVATE);
             effect3d(p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2,1,DEPRESSED);
-        }else if (limit(x,y,35,295,205,405)){
+        }else if (limit(x,y,405,195,575,305)){
             mocultar();
             pantalla_juego();
         }
@@ -150,9 +151,10 @@ void pantalla_juego(){
     button boton1;
     clrscr();
     setbkcolor(LIGHTGRAY);
-    setfillstyle(SOLID_FILL,DARKGRAY);
+    setfillstyle(SOLID_FILL,LIGHTGRAY);
     bar(0,0,640,480);
 
+    /*cuadricula*/
     setcolor(WHITE);
     rectangle(170,90,470,390);
     line(270,90,270,390);
@@ -160,8 +162,12 @@ void pantalla_juego(){
     line(170,190,470,190);
     line(170,290,470,290);
 
-    setfillstyle(SOLID_FILL,LIGHTGRAY);
-    bar(10,10,90,40);
+    /*regresar*/
+    setcolor(WHITE);
+    rectangle(10,10,90,40);
+    setfillstyle(SOLID_FILL,LIGHTCYAN);
+    floodfill(20,20,WHITE);
+    setlinestyle(0,0,3);
     setcolor(DARKGRAY);
     line(24,25,80,25);
     line(24,25,43,35);
