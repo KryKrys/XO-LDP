@@ -19,14 +19,43 @@ void main(){
     
     initgraph(&driver,&mode," ");
     setbkcolor(BLACK);
-    setcolor(WHITE);
+    setcolor(LIGHTGRAY);
 	rectangle(0, 450, 800, 480);
     setfillstyle(SOLID_FILL,LIGHTGRAY);
     floodfill(5,450+10, WHITE);
-	newButton(&boton1,2,455," XO ");
+	newButton(&boton1,2,456," XO ", BLACK, WHITE);
+     mver();
+        
     
     
-    while(i<1){
+    do{
+        
+		while(mclick()!=1){
+			mposx=mxpos(1);
+			mposy=mypos(1);
+                reloj();
+            
+            
+		}
+		while(mclick()==1){
+            
+			if(limit(mposx,mposy,boton1.x1,boton1.y1,boton1.x2,boton1.y2)){
+				mocultar();
+				effect3d(boton1.x1,boton1.y1,boton1.x2,boton1.y2,1,DEPRESSED);
+				setcolor(RED);
+				outtextxy(250,250,"HOLA VAMO A JUGAR?");
+				mver();
+                
+			}
+		}
+        do{
+            reloj();
+        }while(!kbhit());
+		effect3d(boton1.x1,boton1.y1,boton1.x2,boton1.y2,1,ELEVATE);
+	}while(getch()==' ');
+}
+
+void reloj(){
         time(&hora);
         outtime = localtime(&hora);
         setcolor(BLACK);
@@ -34,24 +63,4 @@ void main(){
         delay(1000);
         bar(500,450,650,480);
         setfillstyle(SOLID_FILL,LIGHTGRAY);
-        mver();
-        }
-    
-    
-    do{
-		while(mclick()!=1){
-			mposx=mxpos(1);
-			mposy=mypos(1);
-		}
-		while(mclick()==1){
-			if(limit(mposx,mposy,boton1.x1,boton1.y1,boton1.x2,boton1.y2)){
-				mocultar();
-				effect3d(boton1.x1,boton1.y1,boton1.x2,boton1.y2,1,DEPRESSED);
-				setcolor(WHITE);
-				outtextxy(250,250,"HOLA VAMO A JUGAR?");
-				mver();
-			}
-		}
-		effect3d(boton1.x1,boton1.y1,boton1.x2,boton1.y2,1,ELEVATE);
-	}while(getch()==' ');
 }
