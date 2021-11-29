@@ -79,6 +79,8 @@ void pantalla_princip(){
 
 void ajustes(){
     int x,y;
+    char on[3]="On",off[4]="Off";
+
     button vspc, p1p2;
     clrscr();
     setbkcolor(LIGHTGRAY);
@@ -104,8 +106,8 @@ void ajustes(){
     settextstyle(0,0,3);
     outtextxy(290,110,"P1 vs PC");
     outtextxy(290,190,"P1 vs P2");
-    newButton(&vspc,510,110,"On",LIGHTGRAY,BLACK);
-    newbutton(&p1p2,510,190,"Off",LIGHTGRAY,BLACK)
+    newButton(&vspc,510,110," On  ",LIGHTGRAY,DARKGRAY);
+    newButton(&p1p2,510,190," Off ",LIGHTGRAY,DARKGRAY);
     mver();
     do{
         while(mclick()!=1){
@@ -119,7 +121,17 @@ void ajustes(){
         }
 
         if(limit(x,y,vspc.x1,vspc.y1,vspc.x2,vspc.y2)){
-            effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,DEPRESSED);
+            newButton(&p1p2,510,190," OFF ",LIGHTGRAY,RED);
+            newButton(&vspc,510,110," ON  ",LIGHTGRAY,GREEN);
+            /*effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,DEPRESSED);
+            effect3d(p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2,1,ELEVATE);*/
+        }
+
+        if (limit(x,y,p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2)){
+            newButton(&vspc,510,110," OFF ",LIGHTGRAY,RED);
+            newButton(&p1p2,510,190," ON  ",LIGHTGRAY,GREEN);
+            /*effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,ELEVATE);
+            effect3d(p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2,1,DEPRESSED);*/
         }
 
     }while(1);
