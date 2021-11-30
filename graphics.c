@@ -20,6 +20,7 @@ void jugador2(void);
 
 int e=0,e1=0,e2=0, val=0;
 int opc=1;
+int lleno=0;
 
 struct tm *outtime;
 time_t hora;
@@ -111,6 +112,7 @@ void ajustes(){
 
     button vspc, p1p2;
     button equis, cero;
+    player1.marca=X;
     clrscr();
     setbkcolor(LIGHTGRAY);
     setfillstyle(SOLID_FILL,LIGHTGRAY);
@@ -164,6 +166,7 @@ void ajustes(){
     newButton(&p1p2,280,310," OFF ",LIGHTGRAY,RED);
     effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,DEPRESSED); 
     mver();
+
     do{
         while(mclick()!=1){
             x = mxpos(1);
@@ -174,32 +177,39 @@ void ajustes(){
             mocultar();
             pantalla_princip();
         } else if(limit(x,y,vspc.x1,vspc.y1,vspc.x2,vspc.y2)){
+            mocultar();
             opc=1;
             newButton(&p1p2,280,310," OFF ",LIGHTGRAY,RED);
             newButton(&vspc,280,210," ON  ",LIGHTGRAY,GREEN);
             effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,DEPRESSED);
             effect3d(p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2,1,ELEVATE);
+            mver();
         } else if (limit(x,y,p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2)){
             opc=2;
+            mocultar();
             newButton(&vspc,280,210," OFF ",LIGHTGRAY,RED);
             newButton(&p1p2,280,310," ON  ",LIGHTGRAY,GREEN);
             effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,ELEVATE);
             effect3d(p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2,1,DEPRESSED);
+            mver();
         }else if (limit(x,y,equis.x1,equis.y1,equis.x2,equis.y2)){
+            mocultar();
             player1.marca=X;
             player2.marca=O;
             newButton(&equis,500,170,"  .  ",LIGHTGRAY,DARKGRAY);
             newButton(&cero,500,250,"     ",LIGHTGRAY,WHITE);
            effect3d(cero.x1,cero.y1,cero.x2,cero.y2,1,ELEVATE);
             effect3d(equis.x1,equis.y1,equis.x2,equis.y2,1,DEPRESSED);
+            mver();
         }else if(limit(x,y,cero.x1,cero.y1,cero.x2,cero.y2)){
-
+            mocultar();
             player1.marca=O;
             player2.marca=X;
             newButton(&equis,500,170,"     ",LIGHTGRAY,WHITE);
             newButton(&cero,500,250,"  .  ",LIGHTGRAY,DARKGRAY);
             effect3d(cero.x1,cero.y1,cero.x2,cero.y2,1,DEPRESSED);
             effect3d(equis.x1,equis.y1,equis.x2,equis.y2,1,ELEVATE);
+            mver();
         }else if (limit(x,y,405,345,575,405)){
 
             mocultar();
@@ -216,7 +226,8 @@ void pantalla_juego(){
 	
 	int cont=1;
 
-    int x,y;
+    time(&hora);
+    outtime = localtime(&hora);
 
     clrscr();
     
@@ -251,6 +262,18 @@ void pantalla_juego(){
     /*newButton(&boton1,100,100,"Ajustes",LIGHTGRAY,WHITE);*/
     mver();
 
+    if (player1.marca==X) {
+		player2.marca=O;
+	}else{
+		player2.marca=X;
+	}
+
+    for (j=0;j<3;j++){
+		for(i=0;i<3;i++){
+			xo[i][j]=0;
+	    }
+	}
+
    switch(opc){
        
        case 1:
@@ -262,8 +285,7 @@ void pantalla_juego(){
                     final=1;
                     rachas();
                     freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
-                    time(&hora);
-                    outtime = localtime(&hora);
+                    
                     fprintf(archivo,"%.19s\n", asctime(outtime));
                     if(e>4){
                         fprintf(archivo,"%d. Ganador player 1 [%d]\n",cont,e);
@@ -310,6 +332,7 @@ void pantalla_juego(){
                     }else{
                         fprintf(archivo,"%d. Ganador player 1 \n",cont,e);
                     }
+                   
                     rewind(archivo);
                     break;
                 }
@@ -326,13 +349,20 @@ void pantalla_juego(){
                     }else{
                         fprintf(archivo,"%d. Ganador player 2 \n",cont,e);
                     }
+
+                    
                     rewind(archivo);
                     break;
                 }
 	        }
-
+            outtextxy(90,90,"gana");
+            mocultar();
+            getch();
+            pantalla_princip();
        break;
    }
+
+
 
     
 }
@@ -345,15 +375,22 @@ void jugador1(){
 			x=mxpos(1);
 			y=mypos(1);
 		}
+        setlinestyle(0,0,3);
+
         if(limit(x,y,170,90,270,190)){
              while(repetir==0){
                 if (player1.marca==X && xo[0][0]==0){
                     xo[0][0]=1;
+                    mocultar();
                     pintar_equis(190,230,110,170);
+                    mver();
                     repetir=1;
                 }else if (player1.marca==O && xo[0][0]==0){
                     xo[0][0]=2;
-                    circle(200,120,5);
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(220,140,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
@@ -363,10 +400,16 @@ void jugador1(){
              while(repetir==0){
                 if (player1.marca==X && xo[0][1]==0){
                     xo[0][1]=1;
+                    mocultar();
                     pintar_equis(290,330,110,170);
+                    mver();
                     repetir=1;
                 }else if (player1.marca==O && xo[0][1]==0){
                     xo[0][1]=2;
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(320,140,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
@@ -376,10 +419,16 @@ void jugador1(){
              while(repetir==0){
                 if (player1.marca==X && xo[0][2]==0){
                     xo[0][2]=1;
+                    mocultar();
                     pintar_equis(390,430,110,170);
+                    mver();
                     repetir=1;
                 }else if (player1.marca==O && xo[0][2]==0){
                     xo[0][2]=2;
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(420,140,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
@@ -389,10 +438,16 @@ void jugador1(){
              while(repetir==0){
                 if (player1.marca==X && xo[1][0]==0){
                     xo[1][0]=1;
-                    pintar_equis(190,330,210,270);
+                    mocultar();
+                    pintar_equis(190,230,210,270);
+                    mver();
                     repetir=1;
                 }else if (player1.marca==O && xo[1][0]==0){
                     xo[1][0]=2;
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(220,240,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
@@ -402,10 +457,16 @@ void jugador1(){
              while(repetir==0){
                 if (player1.marca==X && xo[1][1]==0){
                     xo[1][1]=1;
+                    mocultar();
                     pintar_equis(290,330,210,270);
+                    mver();
                     repetir=1;
                 }else if (player1.marca==O && xo[1][1]==0){
                     xo[1][1]=2;
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(320,240,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
@@ -415,10 +476,16 @@ void jugador1(){
              while(repetir==0){
                 if (player1.marca==X && xo[1][2]==0){
                     xo[1][2]=1;
+                    mocultar();
                     pintar_equis(390,430,210,270);
+                    mver();
                     repetir=1;
                 }else if (player1.marca==O && xo[1][2]==0){
                     xo[1][2]=2;
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(420,240,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
@@ -428,10 +495,16 @@ void jugador1(){
              while(repetir==0){
                 if (player1.marca==X && xo[2][0]==0){
                     xo[2][0]=1;
-                    pintar_equis(190,430,310,350);
+                    mocultar();
+                    pintar_equis(190,230,310,370);
+                    mver();
                     repetir=1;
-                }else if (player1.marca==O && xo[2][2]==0){
-                    xo[2][2]=2;
+                }else if (player1.marca==O && xo[2][0]==0){
+                    xo[2][0]=2;
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(220,340,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
@@ -440,11 +513,17 @@ void jugador1(){
         }else if(limit(x,y,270,290,370,390)){
             while(repetir==0){
                 if (player1.marca==X && xo[2][1]==0){
-                    pintar_equis(290,430,310,350);
+                    mocultar();
+                    pintar_equis(290,330,310,370);
+                    mver();
                     xo[2][1]=1;
                     repetir=1;
                 }else if (player1.marca==O && xo[2][1]==0){
                     xo[2][1]=2;
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(320,340,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
@@ -454,10 +533,16 @@ void jugador1(){
             while(repetir==0){
                 if (player1.marca==X && xo[2][2]==0){
                     xo[2][2]=1;
-                    pintar_equis(390,430,310,350);
+                    mocultar();
+                    pintar_equis(390,430,310,370);
+                    mver();
                     repetir=1;
                 }else if (player1.marca==O && xo[2][2]==0){
                     xo[2][2]=2;
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(420,340,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
@@ -470,20 +555,26 @@ void jugador1(){
 void jugador2(){
     int x,y,repetir=0;
 
-    do{
+     do{
 		while(mclick()!=1){
 			x=mxpos(1);
 			y=mypos(1);
 		}
-
-		if(limit(x,y,170,90,270,190)){
+        setlinestyle(0,0,3);
+        if(limit(x,y,170,90,270,190)){
              while(repetir==0){
                 if (player2.marca==X && xo[0][0]==0){
                     xo[0][0]=1;
-                    pintar_equis(390,430,310,350);
+                    mocultar();
+                    pintar_equis(190,230,110,170);
+                    mver();
                     repetir=1;
                 }else if (player2.marca==O && xo[0][0]==0){
                     xo[0][0]=2;
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(220,140,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
@@ -493,10 +584,16 @@ void jugador2(){
              while(repetir==0){
                 if (player2.marca==X && xo[0][1]==0){
                     xo[0][1]=1;
-                    pintar_equis(390,430,310,350);
+                    mocultar();
+                    pintar_equis(290,330,110,170);
+                    mver();
                     repetir=1;
                 }else if (player2.marca==O && xo[0][1]==0){
                     xo[0][1]=2;
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(320,140,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
@@ -506,10 +603,16 @@ void jugador2(){
              while(repetir==0){
                 if (player2.marca==X && xo[0][2]==0){
                     xo[0][2]=1;
-                    pintar_equis(390,430,310,350);
+                    mocultar();
+                    pintar_equis(390,430,110,170);
+                    mver();
                     repetir=1;
                 }else if (player2.marca==O && xo[0][2]==0){
                     xo[0][2]=2;
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(420,140,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
@@ -519,10 +622,16 @@ void jugador2(){
              while(repetir==0){
                 if (player2.marca==X && xo[1][0]==0){
                     xo[1][0]=1;
-                    pintar_equis(390,430,310,350);
+                    mocultar();
+                    pintar_equis(190,230,210,270);
+                    mver();
                     repetir=1;
                 }else if (player2.marca==O && xo[1][0]==0){
                     xo[1][0]=2;
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(220,240,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
@@ -532,10 +641,16 @@ void jugador2(){
              while(repetir==0){
                 if (player2.marca==X && xo[1][1]==0){
                     xo[1][1]=1;
-                    pintar_equis(390,430,310,350);
+                    mocultar();
+                    pintar_equis(290,330,210,270);
+                    mver();
                     repetir=1;
                 }else if (player2.marca==O && xo[1][1]==0){
                     xo[1][1]=2;
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(320,240,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
@@ -545,10 +660,16 @@ void jugador2(){
              while(repetir==0){
                 if (player2.marca==X && xo[1][2]==0){
                     xo[1][2]=1;
-                    pintar_equis(390,430,310,350);
+                    mocultar();
+                    pintar_equis(390,430,210,270);
+                    mver();
                     repetir=1;
                 }else if (player2.marca==O && xo[1][2]==0){
                     xo[1][2]=2;
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(420,240,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
@@ -558,10 +679,16 @@ void jugador2(){
              while(repetir==0){
                 if (player2.marca==X && xo[2][0]==0){
                     xo[2][0]=1;
-                    pintar_equis(390,430,310,350);
+                    mocultar();
+                    pintar_equis(190,230,310,350);
+                    mver();
                     repetir=1;
-                }else if (player2.marca==O && xo[2][2]==0){
-                    xo[2][2]=2;
+                }else if (player2.marca==O && xo[2][0]==0){
+                    xo[2][0]=2;
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(220,340,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
@@ -570,11 +697,17 @@ void jugador2(){
         }else if(limit(x,y,270,290,370,390)){
             while(repetir==0){
                 if (player2.marca==X && xo[2][1]==0){
+                    mocultar();
+                    pintar_equis(290,330,310,350);
+                    mver();
                     xo[2][1]=1;
-                    pintar_equis(390,430,310,350);
                     repetir=1;
                 }else if (player2.marca==O && xo[2][1]==0){
                     xo[2][1]=2;
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(320,340,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
@@ -584,24 +717,29 @@ void jugador2(){
             while(repetir==0){
                 if (player2.marca==X && xo[2][2]==0){
                     xo[2][2]=1;
+                    mocultar();
                     pintar_equis(390,430,310,350);
+                    mver();
                     repetir=1;
                 }else if (player2.marca==O && xo[2][2]==0){
                     xo[2][2]=2;
+                    mocultar();
+                    setcolor(GREEN);
+                    circle(420,340,32);
+                    mver();
                     repetir=1;
                 }else{
                     repetir=0;
                 }
 		    }
         }
-
 	}while(repetir==0);
 }
 
 int comprueba(){
 	int i, j, x;
-	int lleno=0;
-	int win=0, lose=0;
+	
+	int win=0,lose=0;
 
 	
 	/*Recorre verticales en busca de semejantes*/
