@@ -5,6 +5,8 @@
 #include<stdio.h>
 #include<button.h>
 
+#define O 111
+#define X 120
 
 void ajustes(void);
 void pantalla_princip(void);
@@ -19,7 +21,7 @@ int xo[3][3]={
 };
 
 struct jugador{
-	char name[LONG];
+	char name[20];
 	char marca;
 };
 
@@ -203,17 +205,6 @@ void pantalla_juego(){
     setfillstyle(SOLID_FILL,LIGHTGRAY);
     bar(0,0,640,480);
 
-    if (player1.marca==X) {
-		player2.marca=O;
-	}else{
-		player2.marca=X;
-	}
-
-	for (j=0;j<3;j++){
-		for(i=0;i<3;i++){
-			xo[i][j]=0;
-		}
-	}
     /*cuadricula*/
     setcolor(WHITE);
     setlinestyle(0,0,3);
@@ -267,12 +258,15 @@ void pantalla_juego(){
         }else if(limit(x,y,270,290,370,390)){
             outtextxy(280,300,"2,1");
         }else if(limit(x,y,370,290,470,390)){
-            
+             outtextxy(380,300,"2,2");
         }
 
 	}while(1);
 }
 
+void jugador1(){
+
+}
 
 int comprueba(){
 	int i, j, x;
