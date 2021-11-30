@@ -1,3 +1,4 @@
+
 #include<mouse.h>
 #include<graphics.h>
 #include<conio.h>
@@ -10,6 +11,7 @@
 #define X 120
 
 void ajustes();
+void pantalla_win(void);
 void pantalla_princip(void);
 void pantalla_juego();
 void pintar_equis(int x1, int x2, int y1, int y2);
@@ -23,6 +25,8 @@ int e=0,e1=0,e2=0, val=0;
 int opc=1;
 int lleno=0;
 char marca_comp;
+
+int win=0, lose=0;
 
 struct tm *outtime;
 time_t hora;
@@ -317,11 +321,13 @@ void pantalla_juego(){
                         fprintf(archivo,"%d. Ganador player 1 \n",cont,e);
                     }
                     rewind(archivo);
+                    pantalla_win();
                     break;
                 }
 
                 juegaPC();
                 if (comprueba()==0){
+
                     val=3;
                     final=1;
                     rachas();
@@ -340,10 +346,6 @@ void pantalla_juego(){
 
                 cont++;
 	        }
-            outtextxy(90,90,"gana");
-            mocultar();
-            getch();
-            ajustes();
        break;
 
         case 2:
@@ -371,6 +373,7 @@ void pantalla_juego(){
                     }
                    
                     rewind(archivo);
+                    pantalla_win();
                     break;
                 }
 
@@ -389,15 +392,12 @@ void pantalla_juego(){
 
                     
                     rewind(archivo);
+                    pantalla_win();
                     break;
                 }
 
                 cont++;
 	        }
-            outtextxy(90,90,"gana");
-            mocultar();
-            getch();
-            ajustes();
        break;
    }
 }
@@ -917,8 +917,6 @@ void jugador2(){
 int comprueba(){
 	int i, j, x;
 	
-	int win=0,lose=0;
-	
 	/*Recorre verticales en busca de semejantes*/
     for(x=0;x<3;x++){
 		for(i=0;i<3;i++){
@@ -1113,4 +1111,72 @@ void rachas(){
 		 e1=0;
 	 }
 }
-    
+
+void pantalla_win(){
+    int x,y;
+
+    mocultar();
+    if(win==3){
+        setlinestyle(0,0,3);
+        setcolor(LIGHTMAGENTA);
+        rectangle(130,70,510,410);
+        setfillstyle(1,DARKGRAY);
+		bar(130,70,510,410);
+		settextstyle(0,0,2);
+		setcolor(LIGHTMAGENTA);
+		outtextxy(137,160,"EL GANADOR ES PLAYER 1");
+
+		setlinestyle(0,0,3);
+        setcolor(LIGHTMAGENTA);
+        rectangle(162,340,278,360);
+        rectangle(335,340,468,360);
+        setfillstyle(1,DARKGRAY);
+		settextstyle(DEFAULT_FONT,HORIZ_DIR,1);
+		bar(162,340,278,360);
+        bar(335,340,468,360);
+        setcolor(LIGHTMAGENTA);
+		outtextxy(165,345,"Jugar de nuevo");
+		outtextxy(338,345,"Regresar al menu");
+
+    }else if (lose==3){
+        setlinestyle(0,0,3);
+        setcolor(GREEN);
+        rectangle(130,70,510,410);
+        setfillstyle(1,DARKGRAY);
+        bar(130,70,510,410);
+		settextstyle(0,0,2);
+		setcolor(GREEN);
+		outtextxy(137,160,"EL GANADOR ES PLAYER 2");
+		
+
+        setlinestyle(0,0,3);
+        setcolor(GREEN);
+        rectangle(162,340,278,360);
+        rectangle(335,340,468,360);
+        setfillstyle(1,DARKGRAY);
+		settextstyle(DEFAULT_FONT,HORIZ_DIR,1);
+		bar(162,340,278,360);
+        bar(335,340,468,360);
+        setcolor(GREEN);
+		outtextxy(165,345,"Jugar de nuevo");
+		outtextxy(338,345,"Regresar al menu");
+    }
+    mver();
+    do{
+        while(mclick()!=1){
+			x=mxpos(1);
+			y=mypos(1);
+		}
+
+        if(limit(x,y,160,335,280,365)){
+            mocultar();
+            ajustes();
+        }else if(limit(x,y,330,335,470,365)){
+            mocultar();
+            pantalla_princip();
+        }
+    }while(1);
+  
+	  
+  }
+    
