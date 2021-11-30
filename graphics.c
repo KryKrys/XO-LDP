@@ -5,9 +5,18 @@
 #include<stdio.h>
 #include<button.h>
 
+
 void ajustes(void);
 void pantalla_princip(void);
 void pantalla_juego(void);
+void pintar_equis(int x1, int x2, int y1, int y2);
+int comprueba(void);
+
+int xo[3][3]={
+    0,0,0,
+    0,0,0
+    ,0,0,0
+};
 
 void main(){
     int driver=DETECT,modo=VGAHI;
@@ -41,8 +50,7 @@ void pantalla_princip(){
     circle(50,40,20);
     setcolor(LIGHTMAGENTA);
     setlinestyle(0,1,3);
-    line(550,20,590,60);
-    line(590,20,550,60);
+    pintar_equis(550,590,20,60);
     /*menu*/
     setfillstyle(LINE_FILL,WHITE);
     bar(100,80,530,420);
@@ -118,8 +126,7 @@ void ajustes(){
     circle(450,250,20);
     setlinestyle(0,0,3);
     setcolor(LIGHTMAGENTA);
-    line(430,160,470,200);
-    line(470,160,430,200);
+    pintar_equis(430,470,160,200);
 
 
     settextstyle(0,0,3);
@@ -237,10 +244,202 @@ void pantalla_juego(){
         }else if(limit(x,y,270,290,370,390)){
             outtextxy(280,300,"2,1");
         }else if(limit(x,y,370,290,470,390)){
-            outtextxy(380,300,"2,2");
+            pintar_equis(390,450,310,370);
         }
 
 	}while(1);
+}
+
+int comprueba(){
+	int i, j, x;
+	int lleno=0;
+	int win=0, lose=0;
+
+	
+	/*Recorre verticales en busca de semejantes*/
+    for(x=0;x<3;x++){
+		for(i=0;i<3;i++){
+			if(xo[x][i]==1){
+				win+=1;
+				if (win==3) {
+					printf("\n\tGana el jugador H 1 c:\n");
+					i=3;
+					x=3;
+                    return 0;
+				}
+				continue;
+			}else{
+				win=0;
+				lose=0;
+				break;
+			}
+		}
+	}
+	lose=0;		
+	win=0;
+	for(x=0;x<3;x++){
+		for(i=0;i<3;i++){
+			if(xo[x][i]==2){
+				lose+=1;
+				if (lose==3) {
+					printf("\n\tGana el jugador H 2 c:\n");
+					i=3;
+					x=3;
+                    return 0;
+				}
+				continue;
+			}else{
+				win=0;
+				lose=0;
+				break;
+			}
+
+		}
+	}
+	lose=0;		
+	win=0;
+    /*Recorre horizontales en busca de semejantes*/
+	for(x=0;x<3;x++){
+		for(i=0;i<3;i++){
+			if(xo[i][x]==1){
+				win++;
+				if (win==3) {
+					printf("\n\tGana el jugador 1 V c:\n");
+					i=3;
+					x=3;
+                    return 0;
+				}
+				continue;
+			}else{
+				lose=0;
+				win=0;
+				break;
+			}
+		}
+	}	
+	lose=0;		
+	win=0;
+	for(x=0;x<3;x++){
+		for(i=0;i<3;i++){
+			if(xo[i][x]==2){
+				lose+=1;
+				if (lose==3) {
+					printf("\n\tGana el jugador V 2 c:\n");
+					i=3;
+					x=3;
+                    return 0;
+				}
+				continue;
+			}else{
+				win=0;
+				lose=0;
+				break;
+			}
+		}
+	}
+    /*Recorre diagonal principal en busca de semejantes*/
+	for(i=0;i<3;i++){
+		for(j=0;j<3;j++){
+			if(j==i){
+				if(xo[j][i]==1){
+					win++;
+					if (win==3) {
+						printf("\n\tGanaste X c: D\n");
+						i=3;
+						x=3;
+                        return 0;
+					}
+					continue;
+				}else{
+					win=0;
+					lose=0;
+					break;
+				}
+			}
+		}
+	}
+	lose=0;		
+	win=0;
+	for(i=0;i<3;i++){
+		for(j=0;j<3;j++){
+			if(j==i){
+				if(xo[j][i]==2){
+					lose+=1;
+					if (lose==3) {
+						printf("\n\tGanaste c:\n");
+						i=3;
+						x=3;
+                        return 0;
+					}
+					continue;
+				}else{
+					win=0;
+					lose=0;
+					break;
+				}
+			}
+		}
+	}
+
+    /*Recorre diagonal secundaria en busca de semejantes*/
+	for(i=0;i<3;i++){
+		if (xo[i][(3-1)-i]==1){
+			win++;
+			if (win==3) {
+				printf("\n\tGanaste X c:DI\n");
+				i=3;
+				x=3;
+                return 0;
+			}
+			continue;
+		}else{
+			win=0;
+			lose=0;
+			break;
+		}
+	}
+	lose=0;		
+	win=0;
+	for(i=0;i<3;i++){
+		if (xo[i][(3-1)-i]==2){
+			lose+=1;
+			if (lose==3) {
+				printf("\n\tGanaste c:\n");
+				i=3;
+				x=3;
+                return 0;
+			}
+			continue;
+		}else{
+			win=0;
+			lose=0;
+			break;
+		}
+		
+	}
+
+	for (j=0;j<3;j++){
+        for(i=0;i<3;i++){
+            if(xo[i][j]!=0){
+				lleno++;
+				if (lleno==9){
+					printf("\n\t Empatacion");
+					i=3;
+					j=3;
+					return 0;
+				}
+				continue;
+			} 
+        }
+    }
+
+    return 1;
+}
+
+void pintar_equis(int x1, int x2, int y1, int y2){
+    setcolor(LIGHTMAGENTA);
+    line(x1,y1,x2,y2);
+    line(x2,y1,x1,y2);
 }
 
     
