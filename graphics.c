@@ -13,6 +13,11 @@ void pantalla_princip(void);
 void pantalla_juego(void);
 void pintar_equis(int x1, int x2, int y1, int y2);
 int comprueba(void);
+void rachas(void);
+void jugador1(void);
+void jugador2(void);
+
+int e=0,e1=0,e2=0, val=0;
 
 int xo[3][3]={
     0,0,0,
@@ -30,6 +35,7 @@ struct jugador player2;
 
 void main(){
     int driver=DETECT,modo=VGAHI;
+    FILE *archivo = fopen("C:/TC20/FICHEROS/registro.txt","w+b");
     /*button boton1;*/
     initgraph(&driver,&modo,"");
     /*fondo*/
@@ -176,7 +182,6 @@ void ajustes(){
             effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,ELEVATE);
             effect3d(p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2,1,DEPRESSED);
         }else if (limit(x,y,equis.x1,equis.y1,equis.x2,equis.y2)){
-
             player1.marca=X;
             player2.marca=O;
             newButton(&equis,500,170,"  .  ",LIGHTGRAY,DARKGRAY);
@@ -350,7 +355,6 @@ void jugador1(){
                     repetir=1;
                 }else if (player1.marca==O && xo[0][1]==0){
                     xo[0][1]=2;
-                    circle(300,120,5);
                     repetir=1;
                 }else{
                     repetir=0;
@@ -765,4 +769,20 @@ void pintar_equis(int x1, int x2, int y1, int y2){
     line(x2,y1,x1,y2);
 }
 
+void rachas(){
+
+	if(val==1){
+		e+=1;
+		e1=0;
+		e2=0;
+	 }else if(val==2){
+		e1+=1;
+		e=0;
+		e2=0;
+	}else if(val==3){
+		 e2+=1;
+		 e=0;
+		 e1=0;
+	 }
+}
     
