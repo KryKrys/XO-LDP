@@ -148,6 +148,7 @@ void main(){
 			}else if(limit(mposx,mposy,30,450,60,480)){
 				mocultar();
 				present();
+                screen();
 				mver();
 
             }else if(limit(mposx,mposy,80,450,100,480)){
@@ -1409,5 +1410,6 @@ void present(void)
 	outtextxy(258, 341, "Grupo: 1M2-CO");
 	outtextxy(230, 376, "30 de Noviembre 2021");
     getch();
+    closegraph();
     
 }
