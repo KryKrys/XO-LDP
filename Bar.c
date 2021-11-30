@@ -7,6 +7,7 @@
 #include<time.h>
 #include<button.h>
 
+#define duration 33
 
 int driver=DETECT, mode, color,modo,mposx,mposy,fill,past_color;
 struct tm *outtime;
@@ -17,12 +18,14 @@ void reloj(void);
 void ajustes(void);
 void pantalla_princip(void);
 void screen(void);
+void Windows(void);
 void salir(void); 
 
 
 
 void main(){
     initgraph(&driver,&mode," ");
+	Windows();
     screen();
     reloj();
     pantalla_princip();
@@ -258,6 +261,51 @@ void pantalla_princip(){
     }while(1);
 
 }
+
+void Windows(void)
+{
+	int i, j, x, y;
+	
+	
+    int logo[4][10] =  {{288,159,   318,155,    318,182,    287,182,    288,159},   
+	{321,155,   359,149,    359,182,    321,182,    321,155},   
+	{288,185,   318,185,    318,212,    287,208,    288,185},  
+	{321,185,   359,185,    359,217,    321,212, 321,185}};
+	
+	int charger[2][50] = {  {320,321,323,325,326,327,327,327,327,326,324,322,321,319,317,315,313,312,312,312,312,313,314,316,317,   320,321,323,325,326,327,327,327,327,326,324,322,321,319,317,315,313,312,312,312,312,313,314,316,317},
+                            {368,368,369,370,371,373,375,377,379,381,382,383,384,384,383,382,381,379,377,375,373,371,370,369,368,   368,368,369,370,371,373,375,377,379,381,382,383,384,384,383,382,381,379,377,375,373,371,370,369,368}};
+
+
+
+    settextstyle(SMALL_FONT,HORIZ_DIR,5);
+    setcolor(BLACK);
+    setfillstyle(SOLID_FILL,LIGHTCYAN);
+
+    for(i=0;i<4;i++)
+        fillpoly(5,logo[i]);
+
+    for(j=0;j<4;j++)
+        for (i=0;i<25;i++)
+        {
+            putpixel(charger[0][i+1],charger[1][i+1],WHITE);
+            putpixel(charger[0][i+3],charger[1][i+3],WHITE);
+            putpixel(charger[0][i+6],charger[1][i+6],WHITE);
+            putpixel(charger[0][i+9],charger[1][i+9],WHITE);
+
+
+            putpixel(charger[0][i],charger[1][i],BLACK);
+            putpixel(charger[0][i+2],charger[1][i+2],BLACK);
+            putpixel(charger[0][i+5],charger[1][i+5],BLACK);
+            putpixel(charger[0][i+8],charger[1][i+8],BLACK);
+
+            if(i>10||i<1)
+				delay(5 * duration);
+            else
+				delay(3 * duration);
+			
+        }
+}
+
 void salir(){
     getch();
     clrscr();
