@@ -1290,4 +1290,5 @@ void present(void)
 	outtextxy(258, 341, "Grupo: 1M2-CO");
 	outtextxy(230, 376, "30 de Noviembre 2021");
     getch();
+    
 }
