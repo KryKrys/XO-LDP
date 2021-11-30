@@ -29,7 +29,7 @@ void screen(void);
 void Windows(void);
 void salir(void);
 void flag(void);
-void pintar_equis(int x1, int x2, int y1, int y2)
+void pintar_equis(int x1, int x2, int y1, int y2);
 int comprueba(void);
 void rachas(void);
 void jugador1(void);
@@ -1247,4 +1247,26 @@ void flag(){
 	outtextxy(200,250,">Instalando actulizaciones...<");
     Windows();
     closegraph();
+}
+void pintar_equis(int x1, int x2, int y1, int y2){
+    setcolor(LIGHTMAGENTA);
+    line(x1,y1,x2,y2);
+    line(x2,y1,x1,y2);
+}
+
+void rachas(){
+
+	if(val==1){
+		e+=1;
+		e1=0;
+		e2=0;
+	 }else if(val==2){
+		e1+=1;
+		e=0;
+		e2=0;
+	}else if(val==3){
+		 e2+=1;
+		 e=0;
+		 e1=0;
+	 }
 }
