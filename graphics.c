@@ -333,7 +333,7 @@ void pantalla_juego(){
                     break;
                 }
 
-                cont++
+                cont++;
 	        }
             outtextxy(90,90,"gana");
             mocultar();
@@ -342,6 +342,8 @@ void pantalla_juego(){
        break;
 
         case 2:
+            cont=1;
+
             while(final==0){
 
                 jugador1();
@@ -378,6 +380,8 @@ void pantalla_juego(){
                     rewind(archivo);
                     break;
                 }
+
+                cont++;
 	        }
             outtextxy(90,90,"gana");
             mocultar();
@@ -391,7 +395,7 @@ void juegaPC(){
     int posx,posy,repetir=0;
 	srand ((unsigned) time (NULL));
             /*x=1 o=2*/
-        setlinestyle(0,0,3)
+        setlinestyle(0,0,3);
         if (player1.marca==X) {
 			marca_comp=O;
 		}else{
