@@ -286,15 +286,13 @@ void pantalla_juego(){
 		player2.marca=X;
 	}
 
-    for (j=0;j<3;j++){
+   switch(opc){
+       cont=1;
+       for (j=0;j<3;j++){
 		for(i=0;i<3;i++){
 			xo[i][j]=0;
 	    }
 	}
-
-   switch(opc){
-       cont=1;
-       
        case 1:
             while(final==0){
 
