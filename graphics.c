@@ -164,16 +164,19 @@ void ajustes(){
             mocultar();
             pantalla_princip();
         } else if(limit(x,y,vspc.x1,vspc.y1,vspc.x2,vspc.y2)){
+
             newButton(&p1p2,280,310," OFF ",LIGHTGRAY,RED);
             newButton(&vspc,280,210," ON  ",LIGHTGRAY,GREEN);
             effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,DEPRESSED);
             effect3d(p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2,1,ELEVATE);
         } else if (limit(x,y,p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2)){
+
             newButton(&vspc,280,210," OFF ",LIGHTGRAY,RED);
             newButton(&p1p2,280,310," ON  ",LIGHTGRAY,GREEN);
             effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,ELEVATE);
             effect3d(p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2,1,DEPRESSED);
         }else if (limit(x,y,equis.x1,equis.y1,equis.x2,equis.y2)){
+
             player1.marca=X;
             player2.marca=O;
             newButton(&equis,500,170,"  .  ",LIGHTGRAY,DARKGRAY);
@@ -181,6 +184,7 @@ void ajustes(){
            effect3d(cero.x1,cero.y1,cero.x2,cero.y2,1,ELEVATE);
             effect3d(equis.x1,equis.y1,equis.x2,equis.y2,1,DEPRESSED);
         }else if(limit(x,y,cero.x1,cero.y1,cero.x2,cero.y2)){
+
             player1.marca=O;
             player2.marca=X;
             newButton(&equis,500,170,"     ",LIGHTGRAY,WHITE);
@@ -188,16 +192,19 @@ void ajustes(){
             effect3d(cero.x1,cero.y1,cero.x2,cero.y2,1,DEPRESSED);
             effect3d(equis.x1,equis.y1,equis.x2,equis.y2,1,ELEVATE);
         }else if (limit(x,y,405,345,575,405)){
+
             mocultar();
             pantalla_juego();
         }
-
-
     }while(1);
 
 }
 
 void pantalla_juego(){
+    int i,j,final=0;
+	int opc=1;
+	int cont=1;
+
     int x,y;
     button boton1;
     clrscr();
@@ -232,40 +239,347 @@ void pantalla_juego(){
     /*newButton(&boton1,100,100,"Ajustes",LIGHTGRAY,WHITE);*/
     mver();
 
+   switch(opc){
+       case 1:
+            while(final==0){
+
+                jugador1();
+                if (comprueba()==0){
+                    val=1;
+                    final=1;
+                    rachas();
+                    freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+                    fprintf(archivo,"%.19s\n", asctime(outtime));
+                    if(e>4){
+                        fprintf(archivo,"%d. Ganador player 1 [%d]\n",cont,e);
+                    }else{
+                        fprintf(archivo,"%d. Ganador player 1 \n",cont,e);
+                    }
+                    rewind(archivo);
+                    break;
+                }
+
+                juegaPC();
+                if (comprueba()==0){
+                    val=3;
+                    final=1;
+                    rachas();
+                    freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+                    fprintf(archivo,"%.19s\n", asctime(outtime));
+                    if(e>4){
+                        fprintf(archivo,"%d. Gana PC [%d]\n",cont,e);
+                    }else{
+                        fprintf(archivo,"%d. Gana PC \n",cont,e);
+                    }
+                    rewind(archivo);
+                    break;
+                }
+	        }
+        
+       break;
+
+        case 2:
+            while(final==0){
+
+                jugador1();
+                if (comprueba()==0){
+                    val=1;
+                    final=1;
+                    rachas();
+                    freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+                    fprintf(archivo,"%.19s\n", asctime(outtime));
+                    if(e>4){
+                        fprintf(archivo,"%d. Ganador player 1 [%d]\n",cont,e);
+                    }else{
+                        fprintf(archivo,"%d. Ganador player 1 \n",cont,e);
+                    }
+                    rewind(archivo);
+                    break;
+                }
+
+                jugador2();
+                if (comprueba()==0){
+                    val=2;
+                    final=1;
+                    rachas();
+                    freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+                    fprintf(archivo,"%.19s\n", asctime(outtime));
+                    if(e>4){
+                        fprintf(archivo,"%d. Ganador player 2 [%d]\n",cont,e);
+                    }else{
+                        fprintf(archivo,"%d. Ganador player 2 \n",cont,e);
+                    }
+                    rewind(archivo);
+                    break;
+                }
+	        }
+
+       break;
+   }
+
+    
+}
+
+void jugador1(){
+    int x,y;
+
     do{
 		while(mclick()!=1){
 			x=mxpos(1);
 			y=mypos(1);
 		}
-        setcolor(WHITE);
-		if(limit(x,y,5,5,95,45)){
-            mocultar();
-            pantalla_princip();
-        }else if(limit(x,y,170,90,270,190)){
-            outtextxy(180,100,"0,0");
+        if(limit(x,y,170,90,270,190)){
+             while(repetir==0){
+                if (player1.marca==X && xo[0][0]==0){
+                    xo[0][0]=1;
+                    pintar_equis(190,230,110,170);
+                    repetir=1;
+                }else if (player1.marca==O && xo[0][0]==0){
+                    xo[0][0]=2;
+                    circle(200,120,5);
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
         }else if (limit(x,y,270,90,370,190)){
-            outtextxy(280,100,"0,1");
+             while(repetir==0){
+                if (player1.marca==X && xo[0][1]==0){
+                    xo[0][1]=1;
+                    pintar_equis(290,330,110,170);
+                    repetir=1;
+                }else if (player1.marca==O && xo[0][1]==0){
+                    xo[0][1]=2;
+                    circle(300,120,5);
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
         }else if (limit(x,y,370,90,470,190)){
-            outtextxy(380,100,"0,2");
+             while(repetir==0){
+                if (player1.marca==X && xo[0][2]==0){
+                    xo[0][2]=1;
+                    pintar_equis(390,430,110,170);
+                    repetir=1;
+                }else if (player1.marca==O && xo[0][2]==0){
+                    xo[0][2]=2;
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
         }else if (limit(x,y,170,190,270,290)){
-            outtextxy(180,200,"1,0");
+             while(repetir==0){
+                if (player1.marca==X && xo[1][0]==0){
+                    xo[1][0]=1;
+                    pintar_equis(190,330,210,270);
+                    repetir=1;
+                }else if (player1.marca==O && xo[1][0]==0){
+                    xo[1][0]=2;
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
         }else if(limit(x,y,270,190,370,290)){
-            outtextxy(280,200,"1,1");
+             while(repetir==0){
+                if (player1.marca==X && xo[1][1]==0){
+                    xo[1][1]=1;
+                    pintar_equis(290,330,210,270);
+                    repetir=1;
+                }else if (player1.marca==O && xo[1][1]==0){
+                    xo[1][1]=2;
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
         }else if(limit(x,y,370,190,470,290)){
-            outtextxy(380,200,"1,2");
+             while(repetir==0){
+                if (player1.marca==X && xo[1][2]==0){
+                    xo[1][2]=1;
+                    pintar_equis(390,430,210,270);
+                    repetir=1;
+                }else if (player1.marca==O && xo[1][2]==0){
+                    xo[1][2]=2;
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
         }else if(limit(x,y,170,290,270,390)){
-            outtextxy(180,300,"2,0");
+             while(repetir==0){
+                if (player1.marca==X && xo[2][0]==0){
+                    xo[2][0]=1;
+                    pintar_equis(190,430,310,350);
+                    repetir=1;
+                }else if (player1.marca==O && xo[2][2]==0){
+                    xo[2][2]=2;
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
         }else if(limit(x,y,270,290,370,390)){
-            outtextxy(280,300,"2,1");
+            while(repetir==0){
+                if (player1.marca==X && xo[2][1]==0){
+                    pintar_equis(290,430,310,350);
+                    xo[2][1]=1;
+                    repetir=1;
+                }else if (player1.marca==O && xo[2][1]==0){
+                    xo[2][1]=2;
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
         }else if(limit(x,y,370,290,470,390)){
-             outtextxy(380,300,"2,2");
+            while(repetir==0){
+                if (player1.marca==X && xo[2][2]==0){
+                    xo[2][2]=1;
+                    pintar_equis(390,430,310,350);
+                    repetir=1;
+                }else if (player1.marca==O && xo[2][2]==0){
+                    xo[2][2]=2;
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
         }
-
 	}while(1);
 }
 
-void jugador1(){
+void jugador2(){
+    int x,y;
 
+    do{
+		while(mclick()!=1){
+			x=mxpos(1);
+			y=mypos(1);
+		}
+
+		if(limit(x,y,170,90,270,190)){
+             while(repetir==0){
+                if (player2.marca==X && xo[0][0]==0){
+                    xo[0][0]=1;
+                    pintar_equis(390,430,310,350);
+                    repetir=1;
+                }else if (player2.marca==O && xo[0][0]==0){
+                    xo[0][0]=2;
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
+        }else if (limit(x,y,270,90,370,190)){
+             while(repetir==0){
+                if (player2.marca==X && xo[0][1]==0){
+                    xo[0][1]=1;
+                    pintar_equis(390,430,310,350);
+                    repetir=1;
+                }else if (player2.marca==O && xo[0][1]==0){
+                    xo[0][1]=2;
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
+        }else if (limit(x,y,370,90,470,190)){
+             while(repetir==0){
+                if (player2.marca==X && xo[0][2]==0){
+                    xo[0][2]=1;
+                    pintar_equis(390,430,310,350);
+                    repetir=1;
+                }else if (player2.marca==O && xo[0][2]==0){
+                    xo[0][2]=2;
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
+        }else if (limit(x,y,170,190,270,290)){
+             while(repetir==0){
+                if (player2.marca==X && xo[1][0]==0){
+                    xo[1][0]=1;
+                    pintar_equis(390,430,310,350);
+                    repetir=1;
+                }else if (player2.marca==O && xo[1][0]==0){
+                    xo[1][0]=2;
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
+        }else if(limit(x,y,270,190,370,290)){
+             while(repetir==0){
+                if (player2.marca==X && xo[1][1]==0){
+                    xo[1][1]=1;
+                    pintar_equis(390,430,310,350);
+                    repetir=1;
+                }else if (player2.marca==O && xo[1][1]==0){
+                    xo[1][1]=2;
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
+        }else if(limit(x,y,370,190,470,290)){
+             while(repetir==0){
+                if (player2.marca==X && xo[1][2]==0){
+                    xo[1][2]=1;
+                    pintar_equis(390,430,310,350);
+                    repetir=1;
+                }else if (player2.marca==O && xo[1][2]==0){
+                    xo[1][2]=2;
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
+        }else if(limit(x,y,170,290,270,390)){
+             while(repetir==0){
+                if (player2.marca==X && xo[2][0]==0){
+                    xo[2][0]=1;
+                    pintar_equis(390,430,310,350);
+                    repetir=1;
+                }else if (player2.marca==O && xo[2][2]==0){
+                    xo[2][2]=2;
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
+        }else if(limit(x,y,270,290,370,390)){
+            while(repetir==0){
+                if (player2.marca==X && xo[2][1]==0){
+                    xo[2][1]=1;
+                    pintar_equis(390,430,310,350);
+                    repetir=1;
+                }else if (player2.marca==O && xo[2][1]==0){
+                    xo[2][1]=2;
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
+        }else if(limit(x,y,370,290,470,390)){
+            while(repetir==0){
+                if (player2.marca==X && xo[2][2]==0){
+                    xo[2][2]=1;
+                    pintar_equis(390,430,310,350);
+                    repetir=1;
+                }else if (player2.marca==O && xo[2][2]==0){
+                    xo[2][2]=2;
+                    repetir=1;
+                }else{
+                    repetir=0;
+                }
+		    }
+        }
+
+	}while(1);
 }
 
 int comprueba(){
@@ -280,7 +594,6 @@ int comprueba(){
 			if(xo[x][i]==1){
 				win+=1;
 				if (win==3) {
-					printf("\n\tGana el jugador H 1 c:\n");
 					i=3;
 					x=3;
                     return 0;
@@ -300,7 +613,6 @@ int comprueba(){
 			if(xo[x][i]==2){
 				lose+=1;
 				if (lose==3) {
-					printf("\n\tGana el jugador H 2 c:\n");
 					i=3;
 					x=3;
                     return 0;
@@ -322,7 +634,6 @@ int comprueba(){
 			if(xo[i][x]==1){
 				win++;
 				if (win==3) {
-					printf("\n\tGana el jugador 1 V c:\n");
 					i=3;
 					x=3;
                     return 0;
@@ -342,7 +653,6 @@ int comprueba(){
 			if(xo[i][x]==2){
 				lose+=1;
 				if (lose==3) {
-					printf("\n\tGana el jugador V 2 c:\n");
 					i=3;
 					x=3;
                     return 0;
@@ -362,7 +672,6 @@ int comprueba(){
 				if(xo[j][i]==1){
 					win++;
 					if (win==3) {
-						printf("\n\tGanaste X c: D\n");
 						i=3;
 						x=3;
                         return 0;
@@ -384,7 +693,6 @@ int comprueba(){
 				if(xo[j][i]==2){
 					lose+=1;
 					if (lose==3) {
-						printf("\n\tGanaste c:\n");
 						i=3;
 						x=3;
                         return 0;
@@ -404,7 +712,6 @@ int comprueba(){
 		if (xo[i][(3-1)-i]==1){
 			win++;
 			if (win==3) {
-				printf("\n\tGanaste X c:DI\n");
 				i=3;
 				x=3;
                 return 0;
@@ -422,7 +729,6 @@ int comprueba(){
 		if (xo[i][(3-1)-i]==2){
 			lose+=1;
 			if (lose==3) {
-				printf("\n\tGanaste c:\n");
 				i=3;
 				x=3;
                 return 0;
@@ -441,7 +747,6 @@ int comprueba(){
             if(xo[i][j]!=0){
 				lleno++;
 				if (lleno==9){
-					printf("\n\t Empatacion");
 					i=3;
 					j=3;
 					return 0;
