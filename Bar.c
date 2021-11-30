@@ -104,21 +104,20 @@ void main(){
 		}
 		while(mclick()==1){
             
-			if(limit(mposx,mposy,0,450,20,480)){
+			if(limit(mposx,mposy,0,450,30,480)){
 				mocultar();
 				setcolor(RED);
 				outtextxy(250,250,"LESBIAN OS");
 				mver();
                 
-			}else if(limit(mposx,mposy,30,450,55,480)){
+			}else if(limit(mposx,mposy,30,450,60,480)){
 				mocultar();
 				setcolor(RED);
 				outtextxy(250,250,">Insertar presentacion aqui<");
 				mver();
 
-            }else if(limit(mposx,mposy,70,450,90,480)){
+            }else if(limit(mposx,mposy,80,450,100,480)){
                 mocultar();
-				effect3d(boton3.x1,boton3.y1,boton3.x2,boton3.y2,1,DEPRESSED);
 				mver();
                 pantalla_princip();
                 
