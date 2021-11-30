@@ -19,7 +19,8 @@ void ajustes(void);
 void pantalla_princip(void);
 void screen(void);
 void Windows(void);
-void salir(void); 
+void salir(void);
+void flag(void);
 
 
 
@@ -32,7 +33,7 @@ void main(){
     salir();
     ajustes();
     mver();
-
+    flag();
 }
 
      void screen(){
@@ -109,8 +110,8 @@ void main(){
             
 			if(limit(mposx,mposy,0,450,30,480)){
 				mocultar();
-				setcolor(RED);
-				outtextxy(250,250,"LESBIAN OS");
+                clrscr();   
+                flag();
 				mver();
                 
 			}else if(limit(mposx,mposy,30,450,60,480)){
@@ -121,15 +122,14 @@ void main(){
 
             }else if(limit(mposx,mposy,80,450,100,480)){
                 mocultar();
-				mver();
                 pantalla_princip();
+                mver();
                 
                 
 			}
 		}
         
         
-		effect3d(boton1.x1,boton1.y1,boton1.x2,boton1.y2,1,ELEVATE);
 	}while(1);
     }
 
@@ -307,8 +307,14 @@ void Windows(void)
 }
 
 void salir(){
-    getch();
-    clrscr();
+     initgraph(&driver,&mode," ");
     screen();
 
+}
+void flag(){
+    initgraph(&driver,&mode," ");
+    setcolor(LIGHTGRAY);
+	outtextxy(250,250,">Instalando actulizaciones...<");
+    Windows();
+    closegraph();
 }
