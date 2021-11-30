@@ -9,9 +9,9 @@
 #define O 111
 #define X 120
 
-void ajustes(void);
+void ajustes();
 void pantalla_princip(void);
-void pantalla_juego(void);
+void pantalla_juego();
 void pintar_equis(int x1, int x2, int y1, int y2);
 int comprueba(void);
 void rachas(void);
@@ -41,6 +41,8 @@ struct jugador{
 struct jugador player1;
 struct jugador player2;
 
+
+
 void main(){
     int driver=DETECT,modo=VGAHI;
     /*button boton1;*/
@@ -52,6 +54,7 @@ void main(){
 }
 
 void pantalla_princip(){
+    
     int x,y;
     clrscr();
     setfillstyle(SOLID_FILL,LIGHTGRAY);
@@ -110,11 +113,13 @@ void pantalla_princip(){
 }
 
 void ajustes(){
+    
     int x,y;
 
     button vspc, p1p2;
     button equis, cero;
     player1.marca=X;
+
     clrscr();
     setbkcolor(LIGHTGRAY);
     setfillstyle(SOLID_FILL,LIGHTGRAY);
@@ -222,12 +227,12 @@ void ajustes(){
 }
 
 void pantalla_juego(){
-    FILE *archivo = fopen("C:/TC20/FICHEROS/registro.txt","w+b");
+    FILE *archivo = fopen("C:/TC20/FICHEROS/registro.txt","a+");
 
     int i,j,final=0;
 	
 	int cont=1;
-
+    
     time(&hora);
     outtime = localtime(&hora);
 
@@ -286,7 +291,7 @@ void pantalla_juego(){
                     val=1;
                     final=1;
                     rachas();
-                    freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+                    freopen("C:/TC20/FICHEROS/registro.txt","a+",archivo);
                     
                     fprintf(archivo,"%.19s\n", asctime(outtime));
                     if(e>4){
@@ -303,7 +308,7 @@ void pantalla_juego(){
                     val=3;
                     final=1;
                     rachas();
-                    freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+                    freopen("C:/TC20/FICHEROS/registro.txt","a+",archivo);
                     time(&hora);
                     outtime = localtime(&hora);
                     fprintf(archivo,"%.19s\n", asctime(outtime));
@@ -319,7 +324,7 @@ void pantalla_juego(){
             outtextxy(90,90,"gana");
             mocultar();
             getch();
-            pantalla_princip();
+            ajustes();
        break;
 
         case 2:
@@ -330,7 +335,7 @@ void pantalla_juego(){
                     val=1;
                     final=1;
                     rachas();
-                    freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+                    freopen("C:/TC20/FICHEROS/registro.txt","a+",archivo);
                     fprintf(archivo,"%.19s\n", asctime(outtime));
                     if(e>4){
                         fprintf(archivo,"%d. Ganador player 1 [%d]\n",cont,e);
@@ -347,7 +352,7 @@ void pantalla_juego(){
                     val=2;
                     final=1;
                     rachas();
-                    freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+                    freopen("C:/TC20/FICHEROS/registro.txt","a+",archivo);
                     fprintf(archivo,"%.19s\n", asctime(outtime));
                     if(e>4){
                         fprintf(archivo,"%d. Ganador player 2 [%d]\n",cont,e);
@@ -363,13 +368,9 @@ void pantalla_juego(){
             outtextxy(90,90,"gana");
             mocultar();
             getch();
-            pantalla_princip();
+            ajustes();
        break;
    }
-
-
-
-    
 }
 
 void juegaPC(){
@@ -509,6 +510,9 @@ void juegaPC(){
             }else{
                 repetir=0;
             }
+
+            posx=NULL;
+            posy=NULL;
 		}
 }
 
@@ -658,10 +662,10 @@ void jugador1(){
         }else if(limit(x,y,270,290,370,390)){
             while(repetir==0){
                 if (player1.marca==X && xo[2][1]==0){
+                    xo[2][1]=1;
                     mocultar();
                     pintar_equis(290,330,310,370);
                     mver();
-                    xo[2][1]=1;
                     repetir=1;
                 }else if (player1.marca==O && xo[2][1]==0){
                     xo[2][1]=2;
@@ -885,7 +889,6 @@ int comprueba(){
 	int i, j, x;
 	
 	int win=0,lose=0;
-
 	
 	/*Recorre verticales en busca de semejantes*/
     for(x=0;x<3;x++){
