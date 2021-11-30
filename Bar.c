@@ -314,7 +314,7 @@ void salir(){
 void flag(){
     initgraph(&driver,&mode," ");
     setcolor(LIGHTGRAY);
-	outtextxy(250,250,">Instalando actulizaciones...<");
+	outtextxy(200,250,">Instalando actulizaciones...<");
     Windows();
     closegraph();
 }
