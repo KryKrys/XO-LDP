@@ -294,8 +294,13 @@ void pantalla_juego(){
 
    switch(opc){
        cont=1;
-       
+       final=0;
        case 1:
+            for (j=0;j<3;j++){
+		        for(i=0;i<3;i++){
+			        xo[i][j]=0;
+	            }
+	        }
             while(final==0){
 
                 jugador1();
@@ -343,6 +348,12 @@ void pantalla_juego(){
 
         case 2:
             cont=1;
+
+            for (j=0;j<3;j++){
+		        for(i=0;i<3;i++){
+			        xo[i][j]=0;
+	            }
+	        }
 
             while(final==0){
 
@@ -1075,7 +1086,8 @@ int comprueba(){
 			} 
         }
     }
-
+    win=0;
+    lose=0;
     return 1;
 }
 
