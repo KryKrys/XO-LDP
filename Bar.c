@@ -299,9 +299,9 @@ void Windows(void)
             putpixel(charger[0][i+8],charger[1][i+8],BLACK);
 
             if(i>10||i<1)
-				delay(5 * duration);
+				delay(1 * duration);
             else
-				delay(3 * duration);
+				delay(1 * duration);
 			
         }
 }
