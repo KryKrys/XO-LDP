@@ -341,6 +341,7 @@ void pantalla_juego(){
                         fprintf(archivo,"%d. Gana PC \n",cont,e);
                     }
                     rewind(archivo);
+                    pantalla_win();
                     break;
                 }
 
@@ -389,8 +390,6 @@ void pantalla_juego(){
                     }else{
                         fprintf(archivo,"%d. Ganador player 2 \n",cont,e);
                     }
-
-                    
                     rewind(archivo);
                     pantalla_win();
                     break;
@@ -1124,7 +1123,7 @@ void pantalla_win(){
 		bar(130,70,510,410);
 		settextstyle(0,0,2);
 		setcolor(LIGHTMAGENTA);
-		outtextxy(137,160,"EL GANADOR ES PLAYER 1");
+		outtextxy(145,160,"EL GANADOR ES PLAYER 1");
 
 		setlinestyle(0,0,3);
         setcolor(LIGHTMAGENTA);
@@ -1146,8 +1145,7 @@ void pantalla_win(){
         bar(130,70,510,410);
 		settextstyle(0,0,2);
 		setcolor(GREEN);
-		outtextxy(137,160,"EL GANADOR ES PLAYER 2");
-		
+		outtextxy(145,160,"EL GANADOR ES PLAYER 2");
 
         setlinestyle(0,0,3);
         setcolor(GREEN);
@@ -1158,6 +1156,27 @@ void pantalla_win(){
 		bar(162,340,278,360);
         bar(335,340,468,360);
         setcolor(GREEN);
+		outtextxy(165,345,"Jugar de nuevo");
+		outtextxy(338,345,"Regresar al menu");
+    }else{
+         setlinestyle(0,0,3);
+        setcolor(WHITE);
+        rectangle(130,70,510,410);
+        setfillstyle(1,DARKGRAY);
+        bar(130,70,510,410);
+		settextstyle(0,0,3);
+		setcolor(WHITE);
+		outtextxy(250,160,"EMPATE");
+
+        setlinestyle(0,0,3);
+        setcolor(WHITE);
+        rectangle(162,340,278,360);
+        rectangle(335,340,468,360);
+        setfillstyle(1,DARKGRAY);
+		settextstyle(DEFAULT_FONT,HORIZ_DIR,1);
+		bar(162,340,278,360);
+        bar(335,340,468,360);
+        setcolor(WHITE);
 		outtextxy(165,345,"Jugar de nuevo");
 		outtextxy(338,345,"Regresar al menu");
     }
