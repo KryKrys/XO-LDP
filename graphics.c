@@ -92,9 +92,7 @@ void ajustes(){
     bar(20,70,340,420);
     setfillstyle(SOLID_FILL,CYAN);
     bar(40,90,320,400);
-    setcolor(DARKGRAY);
-    settextstyle(0,0,4);
-    outtextxy(200,20,"Modalidad");
+    
     /*regresar*/
     setfillstyle(SOLID_FILL,DARKGRAY);
     bar(20,10,100,40);
@@ -105,15 +103,24 @@ void ajustes(){
     
     /*jugar*/
     setfillstyle(LINE_FILL,WHITE);
-    bar(390,180,590,320);
+    bar(390,330,590,420);
     setfillstyle(SOLID_FILL,CYAN);
-    bar(410,200,570,300);
+    bar(410,350,570,400);
+
+    /*selector*/
+    setfillstyle(LINE_FILL,WHITE);
+    bar(390,100,590,320);
+    setfillstyle(SOLID_FILL,CYAN);
+    bar(410,120,570,300);
 
     settextstyle(0,0,3);
-    outtextxy(60,150,"P1 vs PC");
+    setcolor(DARKGRAY);
+    outtextxy(70,110,"Modalidad");
+    outtextxy(60,200,"P1 vs PC");
     outtextxy(60,300,"P1 vs P2");
-    outtextxy(420,235,"Jugar!");
-    newButton(&vspc,280,160," ON  ",LIGHTGRAY,GREEN);
+    outtextxy(430,360,"Jugar!");
+    outtextxy(400,70,"Ficha P1");
+    newButton(&vspc,280,210," ON  ",LIGHTGRAY,GREEN);
     newButton(&p1p2,280,310," OFF ",LIGHTGRAY,RED);
     effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,DEPRESSED); 
     mver();
@@ -128,15 +135,15 @@ void ajustes(){
             pantalla_princip();
         } else if(limit(x,y,vspc.x1,vspc.y1,vspc.x2,vspc.y2)){
             newButton(&p1p2,280,310," OFF ",LIGHTGRAY,RED);
-            newButton(&vspc,280,160," ON  ",LIGHTGRAY,GREEN);
+            newButton(&vspc,280,210," ON  ",LIGHTGRAY,GREEN);
             effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,DEPRESSED);
             effect3d(p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2,1,ELEVATE);
         } else if (limit(x,y,p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2)){
-            newButton(&vspc,280,160," OFF ",LIGHTGRAY,RED);
+            newButton(&vspc,280,210," OFF ",LIGHTGRAY,RED);
             newButton(&p1p2,280,310," ON  ",LIGHTGRAY,GREEN);
             effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,ELEVATE);
             effect3d(p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2,1,DEPRESSED);
-        }else if (limit(x,y,405,195,575,305)){
+        }else if (limit(x,y,405,345,575,405)){
             mocultar();
             pantalla_juego();
         }
@@ -156,6 +163,7 @@ void pantalla_juego(){
 
     /*cuadricula*/
     setcolor(WHITE);
+    setlinestyle(0,0,3);
     rectangle(170,90,470,390);
     line(270,90,270,390);
     line(375,90,375,390);
