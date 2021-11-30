@@ -25,6 +25,7 @@ int e=0,e1=0,e2=0, val=0;
 int opc=1;
 int lleno=0;
 char marca_comp;
+int bool1=0;
 
 int win=0, lose=0;
 
@@ -299,6 +300,7 @@ void pantalla_juego(){
    switch(opc){
        cont=1;
        final=0;
+       bool1=0;
        case 1:
             for (j=0;j<3;j++){
 		        for(i=0;i<3;i++){
@@ -327,7 +329,6 @@ void pantalla_juego(){
 
                 juegaPC();
                 if (comprueba()==0){
-
                     val=3;
                     final=1;
                     rachas();
@@ -403,6 +404,7 @@ void pantalla_juego(){
 
 void juegaPC(){
     int posx,posy,repetir=0;
+    bool1=1;
 	srand ((unsigned) time (NULL));
             /*x=1 o=2*/
         setlinestyle(0,0,3);
@@ -1121,9 +1123,16 @@ void pantalla_win(){
         rectangle(130,70,510,410);
         setfillstyle(1,DARKGRAY);
 		bar(130,70,510,410);
-		settextstyle(0,0,2);
-		setcolor(LIGHTMAGENTA);
-		outtextxy(145,160,"EL GANADOR ES PLAYER 1");
+        if (bool1==1){
+            settextstyle(0,0,2);
+		    setcolor(LIGHTMAGENTA);
+		    outtextxy(240,160,"GANA EL PC");
+        }else if(bool1==0){
+            settextstyle(0,0,2);
+		    setcolor(LIGHTMAGENTA);
+		    outtextxy(145,160,"EL GANADOR ES PLAYER 1");
+        }
+		
 
 		setlinestyle(0,0,3);
         setcolor(LIGHTMAGENTA);
@@ -1143,9 +1152,16 @@ void pantalla_win(){
         rectangle(130,70,510,410);
         setfillstyle(1,DARKGRAY);
         bar(130,70,510,410);
-		settextstyle(0,0,2);
-		setcolor(GREEN);
-		outtextxy(145,160,"EL GANADOR ES PLAYER 2");
+        if (bool1==1){
+            settextstyle(0,0,2);
+		    setcolor(GREEN);
+		    outtextxy(240,160,"GANA EL PC");
+        }else if(bool1==0){
+            settextstyle(0,0,2);
+		    setcolor(GREEN);
+		    outtextxy(145,160,"EL GANADOR ES PLAYER 2");
+        }
+		
 
         setlinestyle(0,0,3);
         setcolor(GREEN);
@@ -1158,6 +1174,7 @@ void pantalla_win(){
         setcolor(GREEN);
 		outtextxy(165,345,"Jugar de nuevo");
 		outtextxy(338,345,"Regresar al menu");
+
     }else{
          setlinestyle(0,0,3);
         setcolor(WHITE);
@@ -1166,7 +1183,7 @@ void pantalla_win(){
         bar(130,70,510,410);
 		settextstyle(0,0,3);
 		setcolor(WHITE);
-		outtextxy(250,160,"EMPATE");
+		outtextxy(270,160,"EMPATE");
 
         setlinestyle(0,0,3);
         setcolor(WHITE);
