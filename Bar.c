@@ -7,7 +7,7 @@
 #include<time.h>
 #include<button.h>
 
-#define duration 33
+#define duration 20
 
 int driver=DETECT, mode, color,modo,mposx,mposy,fill,past_color;
 struct tm *outtime;
