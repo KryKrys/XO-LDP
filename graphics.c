@@ -4,6 +4,7 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<button.h>
+#include <time.h>
 
 #define O 111
 #define X 120
@@ -18,6 +19,10 @@ void jugador1(void);
 void jugador2(void);
 
 int e=0,e1=0,e2=0, val=0;
+int opc=1;
+
+struct tm *outtime;
+time_t hora;
 
 int xo[3][3]={
     0,0,0,
@@ -35,7 +40,6 @@ struct jugador player2;
 
 void main(){
     int driver=DETECT,modo=VGAHI;
-    FILE *archivo = fopen("C:/TC20/FICHEROS/registro.txt","w+b");
     /*button boton1;*/
     initgraph(&driver,&modo,"");
     /*fondo*/
@@ -170,13 +174,13 @@ void ajustes(){
             mocultar();
             pantalla_princip();
         } else if(limit(x,y,vspc.x1,vspc.y1,vspc.x2,vspc.y2)){
-
+            opc=1;
             newButton(&p1p2,280,310," OFF ",LIGHTGRAY,RED);
             newButton(&vspc,280,210," ON  ",LIGHTGRAY,GREEN);
             effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,DEPRESSED);
             effect3d(p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2,1,ELEVATE);
         } else if (limit(x,y,p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2)){
-
+            opc=2;
             newButton(&vspc,280,210," OFF ",LIGHTGRAY,RED);
             newButton(&p1p2,280,310," ON  ",LIGHTGRAY,GREEN);
             effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,ELEVATE);
@@ -206,13 +210,16 @@ void ajustes(){
 }
 
 void pantalla_juego(){
+    FILE *archivo = fopen("C:/TC20/FICHEROS/registro.txt","w+b");
+
     int i,j,final=0;
-	int opc=1;
+	
 	int cont=1;
 
     int x,y;
-    button boton1;
+
     clrscr();
+    
     setbkcolor(LIGHTGRAY);
     setfillstyle(SOLID_FILL,LIGHTGRAY);
     bar(0,0,640,480);
@@ -245,6 +252,7 @@ void pantalla_juego(){
     mver();
 
    switch(opc){
+       
        case 1:
             while(final==0){
 
@@ -254,6 +262,8 @@ void pantalla_juego(){
                     final=1;
                     rachas();
                     freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+                    time(&hora);
+                    outtime = localtime(&hora);
                     fprintf(archivo,"%.19s\n", asctime(outtime));
                     if(e>4){
                         fprintf(archivo,"%d. Ganador player 1 [%d]\n",cont,e);
@@ -264,12 +274,14 @@ void pantalla_juego(){
                     break;
                 }
 
-                juegaPC();
+                /*juegaPC();
                 if (comprueba()==0){
                     val=3;
                     final=1;
                     rachas();
                     freopen("C:/TC20/FICHEROS/registro.txt","a+b",archivo);
+                    time(&hora);
+                    outtime = localtime(&hora);
                     fprintf(archivo,"%.19s\n", asctime(outtime));
                     if(e>4){
                         fprintf(archivo,"%d. Gana PC [%d]\n",cont,e);
@@ -278,7 +290,7 @@ void pantalla_juego(){
                     }
                     rewind(archivo);
                     break;
-                }
+                }*/
 	        }
         
        break;
@@ -326,7 +338,7 @@ void pantalla_juego(){
 }
 
 void jugador1(){
-    int x,y;
+    int x,y,repetir=0;
 
     do{
 		while(mclick()!=1){
@@ -452,11 +464,11 @@ void jugador1(){
                 }
 		    }
         }
-	}while(1);
+	}while(repetir==0);
 }
 
 void jugador2(){
-    int x,y;
+    int x,y,repetir=0;
 
     do{
 		while(mclick()!=1){
@@ -583,7 +595,7 @@ void jugador2(){
 		    }
         }
 
-	}while(1);
+	}while(repetir==0);
 }
 
 int comprueba(){
