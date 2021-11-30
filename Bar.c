@@ -16,9 +16,10 @@ struct tm *outtime;
     time_t hora;
     int i,x,y;
     button boton1, boton2, boton3;
-    int e=0,e1=0,e2=0, val=0;
+    int e=0,e1=0,e2=0, val=0, bool1=0;
     int opc=1;
     int lleno=0;
+    int win=0, lose=0;
     char marca_comp;
 
 void reloj(void);
@@ -30,12 +31,13 @@ void Windows(void);
 void salir(void);
 void flag(void);
 void pintar_equis(int x1, int x2, int y1, int y2);
-int comprueba(void);
 void rachas(void);
+int comprueba(void);
 void jugador1(void);
 void jugador2(void);
-void juegaPC();
+void juegaPC(void);
 void present(void);
+void pantalla_win(void);
 
 int xo[3][3]={
     0,0,0,
@@ -63,6 +65,7 @@ void main(){
     mver();
     flag();
     present();
+    pantalla_win();
 }
 
      void screen(){
@@ -405,14 +408,22 @@ void pantalla_juego(){
 		player2.marca=X;
 	}
 
-   switch(opc){
-       cont=1;
-       for (j=0;j<3;j++){
+    for (j=0;j<3;j++){
 		for(i=0;i<3;i++){
 			xo[i][j]=0;
 	    }
 	}
+
+   switch(opc){
+       cont=1;
+       final=0;
+       bool1=0;
        case 1:
+            for (j=0;j<3;j++){
+		        for(i=0;i<3;i++){
+			        xo[i][j]=0;
+	            }
+	        }
             while(final==0){
 
                 jugador1();
@@ -429,6 +440,7 @@ void pantalla_juego(){
                         fprintf(archivo,"%d. Ganador player 1 \n",cont,e);
                     }
                     rewind(archivo);
+                    pantalla_win();
                     break;
                 }
 
@@ -447,19 +459,22 @@ void pantalla_juego(){
                         fprintf(archivo,"%d. Gana PC \n",cont,e);
                     }
                     rewind(archivo);
+                    pantalla_win();
                     break;
                 }
 
                 cont++;
 	        }
-            outtextxy(90,90,"gana");
-            mocultar();
-            getch();
-            ajustes();
        break;
 
         case 2:
             cont=1;
+
+            for (j=0;j<3;j++){
+		        for(i=0;i<3;i++){
+			        xo[i][j]=0;
+	            }
+	        }
 
             while(final==0){
 
@@ -477,6 +492,7 @@ void pantalla_juego(){
                     }
                    
                     rewind(archivo);
+                    pantalla_win();
                     break;
                 }
 
@@ -492,24 +508,20 @@ void pantalla_juego(){
                     }else{
                         fprintf(archivo,"%d. Ganador player 2 \n",cont,e);
                     }
-
-                    
                     rewind(archivo);
+                    pantalla_win();
                     break;
                 }
 
                 cont++;
 	        }
-            outtextxy(90,90,"gana");
-            mocultar();
-            getch();
-            ajustes();
        break;
    }
 }
 
 void juegaPC(){
     int posx,posy,repetir=0;
+    bool1=1;
 	srand ((unsigned) time (NULL));
             /*x=1 o=2*/
         setlinestyle(0,0,3);
@@ -1023,8 +1035,6 @@ void jugador2(){
 int comprueba(){
 	int i, j, x;
 	
-	int win=0,lose=0;
-	
 	/*Recorre verticales en busca de semejantes*/
     for(x=0;x<3;x++){
 		for(i=0;i<3;i++){
@@ -1192,9 +1202,136 @@ int comprueba(){
 			} 
         }
     }
-
+    win=0;
+    lose=0;
     return 1;
 }
+
+void pintar_equis(int x1, int x2, int y1, int y2){
+    setcolor(LIGHTMAGENTA);
+    line(x1,y1,x2,y2);
+    line(x2,y1,x1,y2);
+}
+
+void rachas(){
+
+	if(val==1){
+		e+=1;
+		e1=0;
+		e2=0;
+	 }else if(val==2){
+		e1+=1;
+		e=0;
+		e2=0;
+	}else if(val==3){
+		 e2+=1;
+		 e=0;
+		 e1=0;
+	 }
+}
+
+void pantalla_win(){
+    int x,y;
+
+    mocultar();
+    if(win==3){
+        setlinestyle(0,0,3);
+        setcolor(LIGHTMAGENTA);
+        rectangle(130,70,510,410);
+        setfillstyle(1,DARKGRAY);
+		bar(130,70,510,410);
+        if (bool1==1){
+            settextstyle(0,0,2);
+		    setcolor(LIGHTMAGENTA);
+		    outtextxy(240,160,"GANA EL PC");
+        }else if(bool1==0){
+            settextstyle(0,0,2);
+		    setcolor(LIGHTMAGENTA);
+		    outtextxy(145,160,"EL GANADOR ES PLAYER 1");
+        }
+		
+
+		setlinestyle(0,0,3);
+        setcolor(LIGHTMAGENTA);
+        rectangle(162,340,278,360);
+        rectangle(335,340,468,360);
+        setfillstyle(1,DARKGRAY);
+		settextstyle(DEFAULT_FONT,HORIZ_DIR,1);
+		bar(162,340,278,360);
+        bar(335,340,468,360);
+        setcolor(LIGHTMAGENTA);
+		outtextxy(165,345,"Jugar de nuevo");
+		outtextxy(338,345,"Regresar al menu");
+
+    }else if (lose==3){
+        setlinestyle(0,0,3);
+        setcolor(GREEN);
+        rectangle(130,70,510,410);
+        setfillstyle(1,DARKGRAY);
+        bar(130,70,510,410);
+        if (bool1==1){
+            settextstyle(0,0,2);
+		    setcolor(GREEN);
+		    outtextxy(240,160,"GANA EL PC");
+        }else if(bool1==0){
+            settextstyle(0,0,2);
+		    setcolor(GREEN);
+		    outtextxy(145,160,"EL GANADOR ES PLAYER 2");
+        }
+		
+
+        setlinestyle(0,0,3);
+        setcolor(GREEN);
+        rectangle(162,340,278,360);
+        rectangle(335,340,468,360);
+        setfillstyle(1,DARKGRAY);
+		settextstyle(DEFAULT_FONT,HORIZ_DIR,1);
+		bar(162,340,278,360);
+        bar(335,340,468,360);
+        setcolor(GREEN);
+		outtextxy(165,345,"Jugar de nuevo");
+		outtextxy(338,345,"Regresar al menu");
+
+    }else{
+         setlinestyle(0,0,3);
+        setcolor(WHITE);
+        rectangle(130,70,510,410);
+        setfillstyle(1,DARKGRAY);
+        bar(130,70,510,410);
+		settextstyle(0,0,3);
+		setcolor(WHITE);
+		outtextxy(270,160,"EMPATE");
+
+        setlinestyle(0,0,3);
+        setcolor(WHITE);
+        rectangle(162,340,278,360);
+        rectangle(335,340,468,360);
+        setfillstyle(1,DARKGRAY);
+		settextstyle(DEFAULT_FONT,HORIZ_DIR,1);
+		bar(162,340,278,360);
+        bar(335,340,468,360);
+        setcolor(WHITE);
+		outtextxy(165,345,"Jugar de nuevo");
+		outtextxy(338,345,"Regresar al menu");
+    }
+    mver();
+    do{
+        while(mclick()!=1){
+			x=mxpos(1);
+			y=mypos(1);
+		}
+
+        if(limit(x,y,160,335,280,365)){
+            mocultar();
+            ajustes();
+        }else if(limit(x,y,330,335,470,365)){
+            mocultar();
+            pantalla_princip();
+        }
+    }while(1);
+  
+	  
+  }
 void Windows(void)
 {
 	int i, j, x, y;
@@ -1249,28 +1386,6 @@ void flag(){
 	outtextxy(200,250,">Instalando actulizaciones...<");
     Windows();
     closegraph();
-}
-void pintar_equis(int x1, int x2, int y1, int y2){
-    setcolor(LIGHTMAGENTA);
-    line(x1,y1,x2,y2);
-    line(x2,y1,x1,y2);
-}
-
-void rachas(){
-
-	if(val==1){
-		e+=1;
-		e1=0;
-		e2=0;
-	 }else if(val==2){
-		e1+=1;
-		e=0;
-		e2=0;
-	}else if(val==3){
-		 e2+=1;
-		 e=0;
-		 e1=0;
-	 }
 }
 void present(void)
 {
