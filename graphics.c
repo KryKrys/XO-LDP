@@ -265,6 +265,12 @@ void pantalla_juego(){
     settextstyle(0,0,2);
     outtextxy(30,290,"PLAYER 1");
     outtextxy(500,290,"PLAYER 2");
+
+     if (player1.marca==X){
+        pintar_equis(40,100,350,410);
+        circle(520,300,30);
+     }
+
     
     /*newButton(&boton1,100,100,"Ajustes",LIGHTGRAY,WHITE);*/
     mver();
