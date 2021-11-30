@@ -17,10 +17,12 @@ int comprueba(void);
 void rachas(void);
 void jugador1(void);
 void jugador2(void);
+void juegaPC(void);
 
 int e=0,e1=0,e2=0, val=0;
 int opc=1;
 int lleno=0;
+char marca_comp;
 
 struct tm *outtime;
 time_t hora;
@@ -296,7 +298,7 @@ void pantalla_juego(){
                     break;
                 }
 
-                /*juegaPC();
+                juegaPC();
                 if (comprueba()==0){
                     val=3;
                     final=1;
@@ -312,9 +314,12 @@ void pantalla_juego(){
                     }
                     rewind(archivo);
                     break;
-                }*/
+                }
 	        }
-        
+            outtextxy(90,90,"gana");
+            mocultar();
+            getch();
+            pantalla_princip();
        break;
 
         case 2:
@@ -365,6 +370,146 @@ void pantalla_juego(){
 
 
     
+}
+
+void juegaPC(){
+    int posx,posy,repetir=0;
+	srand ((unsigned) time (NULL));
+            /*x=1 o=2*/
+
+        if (player1.marca==X) {
+			marca_comp=O;
+		}else{
+			marca_comp=X;
+		}
+
+		while(repetir==0){
+
+			posx = rand() % 3;
+            posy = rand() % 3;
+
+			
+            if (marca_comp==X && posx==0 && posy==0 && xo[posx][posy]==0){
+                xo[posx][posy]=1;
+                mocultar();
+                pintar_equis(190,230,110,170);
+                mver();
+				repetir=1;
+            }else if (marca_comp==O && posx==0 && posy==0 && xo[posx][posy]==0){
+                xo[posx][posy]=2;
+                mocultar();
+                setcolor(GREEN);
+                circle(220,140,32);
+                mver();
+				repetir=1;
+            }else if (marca_comp==X && posx==0 && posy==1 && xo[posx][posy]==0){
+                xo[posx][posy]=1;
+                 mocultar();
+                pintar_equis(290,330,110,170);
+                mver();
+				repetir=1;
+            }else if (marca_comp==O && posx==0 && posy==1 && xo[posx][posy]==0){
+                xo[posx][posy]=2;
+                mocultar();
+                setcolor(GREEN);
+                circle(320,140,32);
+                mver();
+				repetir=1;
+            }else if (marca_comp==X && posx==0 && posy==2 && xo[posx][posy]==0){
+                xo[posx][posy]=1;
+                mocultar();
+                pintar_equis(390,430,110,170);
+                mver();
+                repetir=1;
+            }else if (marca_comp==O && posx==0 && posy==2 && xo[posx][posy]==0){
+                xo[posx][posy]=2;
+                mocultar();
+                setcolor(GREEN);
+                circle(420,140,32);
+                mver();
+                repetir=1;
+            }else if (marca_comp==X && posx==1 && posy==0 && xo[posx][posy]==0){
+                xo[posx][posy]=1;
+                mocultar();
+                pintar_equis(190,230,210,270);
+                mver();
+                repetir=1;
+            }else if (marca_comp==O && posx==1 && posy==0 && xo[posx][posy]==0){
+                xo[posx][posy]=2;
+                mocultar();
+                setcolor(GREEN);
+                circle(220,240,32);
+                mver();
+                repetir=1;
+            }else if (marca_comp==X && posx==1 && posy==1 && xo[posx][posy]==0){
+                xo[posx][posy]=1;
+                mocultar();
+                pintar_equis(290,330,210,270);
+                mver();
+                repetir=1;
+            }else if (marca_comp==O && posx==1 && posy==1 && xo[posx][posy]==0){
+                xo[posx][posy]=2;
+                mocultar();
+                setcolor(GREEN);
+                circle(320,240,32);
+                mver();
+                repetir=1;
+            }else if (marca_comp==X && posx==1 && posy==2 && xo[posx][posy]==0){
+                xo[posx][posy]=1;
+                mocultar();
+                pintar_equis(390,430,210,270);
+                mver();
+                repetir=1;
+            }else if (marca_comp==O && posx==1 && posy==2 && xo[posx][posy]==0){
+                xo[posx][posy]=2;
+                mocultar();
+                setcolor(GREEN);
+                circle(420,240,32);
+                mver();
+                repetir=1;
+            }else if (marca_comp==X && posx==2 && posy==0 && xo[posx][posy]==0){
+                xo[posx][posy]=1;
+                mocultar();
+                pintar_equis(190,230,310,370);
+                mver();
+                repetir=1;
+            }else if (marca_comp==O && posx==2 && posy==0 && xo[posx][posy]==0){
+                xo[posx][posy]=2;
+                mocultar();
+                setcolor(GREEN);
+                circle(220,340,32);
+                mver();
+                repetir=1;
+            }else if (marca_comp==X && posx==2 && posy==1 && xo[posx][posy]==0){
+                mocultar();
+                pintar_equis(290,330,310,370);
+                mver();
+                xo[posx][posy]=1;
+                repetir=1;
+            }else if (marca_comp==O && posx==2 && posy==1 && xo[posx][posy]==0){
+                xo[posx][posy]=2;
+                mocultar();
+                setcolor(GREEN);
+                circle(320,340,32);
+                mver();
+                repetir=1;
+            }else if (marca_comp==X && posx==2 && posy==2 && xo[posx][posy]==0){
+                xo[posx][posy]=1;
+                mocultar();
+                pintar_equis(390,430,310,370);
+                mver();
+                repetir=1;
+            }else if (marca_comp==O && posx==2 && posy==2 && xo[posx][posy]==0){
+                xo[posx][posy]=2;
+                mocultar();
+                setcolor(GREEN);
+                circle(420,340,32);
+                mver();
+                repetir=1;
+            }else{
+                repetir=0;
+            }
+		}
 }
 
 void jugador1(){
