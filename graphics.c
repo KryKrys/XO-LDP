@@ -18,6 +18,14 @@ int xo[3][3]={
     ,0,0,0
 };
 
+struct jugador{
+	char name[LONG];
+	char marca;
+};
+
+struct jugador player1;
+struct jugador player2;
+
 void main(){
     int driver=DETECT,modo=VGAHI;
     /*button boton1;*/
@@ -164,11 +172,15 @@ void ajustes(){
             effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,ELEVATE);
             effect3d(p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2,1,DEPRESSED);
         }else if (limit(x,y,equis.x1,equis.y1,equis.x2,equis.y2)){
+            player1.marca=X;
+            player2.marca=O;
             newButton(&equis,500,170,"  .  ",LIGHTGRAY,DARKGRAY);
             newButton(&cero,500,250,"     ",LIGHTGRAY,WHITE);
            effect3d(cero.x1,cero.y1,cero.x2,cero.y2,1,ELEVATE);
             effect3d(equis.x1,equis.y1,equis.x2,equis.y2,1,DEPRESSED);
         }else if(limit(x,y,cero.x1,cero.y1,cero.x2,cero.y2)){
+            player1.marca=O;
+            player2.marca=X;
             newButton(&equis,500,170,"     ",LIGHTGRAY,WHITE);
             newButton(&cero,500,250,"  .  ",LIGHTGRAY,DARKGRAY);
             effect3d(cero.x1,cero.y1,cero.x2,cero.y2,1,DEPRESSED);
@@ -191,6 +203,17 @@ void pantalla_juego(){
     setfillstyle(SOLID_FILL,LIGHTGRAY);
     bar(0,0,640,480);
 
+    if (player1.marca==X) {
+		player2.marca=O;
+	}else{
+		player2.marca=X;
+	}
+
+	for (j=0;j<3;j++){
+		for(i=0;i<3;i++){
+			xo[i][j]=0;
+		}
+	}
     /*cuadricula*/
     setcolor(WHITE);
     setlinestyle(0,0,3);
@@ -244,11 +267,12 @@ void pantalla_juego(){
         }else if(limit(x,y,270,290,370,390)){
             outtextxy(280,300,"2,1");
         }else if(limit(x,y,370,290,470,390)){
-            pintar_equis(390,450,310,370);
+            
         }
 
 	}while(1);
 }
+
 
 int comprueba(){
 	int i, j, x;
