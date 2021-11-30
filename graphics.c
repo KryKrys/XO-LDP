@@ -267,8 +267,13 @@ void pantalla_juego(){
     outtextxy(500,290,"PLAYER 2");
 
      if (player1.marca==X){
-        pintar_equis(40,100,350,410);
-        circle(520,300,30);
+        pintar_equis(50,110,320,380);
+        setcolor(GREEN);
+        circle(560,350,30);
+     }else if (player2.marca==X){
+        pintar_equis(530,590,320,380);
+        setcolor(GREEN);
+        circle(80,350,30);
      }
 
     
@@ -288,6 +293,7 @@ void pantalla_juego(){
 	}
 
    switch(opc){
+       cont=1;
        
        case 1:
             while(final==0){
@@ -326,6 +332,8 @@ void pantalla_juego(){
                     rewind(archivo);
                     break;
                 }
+
+                cont++
 	        }
             outtextxy(90,90,"gana");
             mocultar();
@@ -383,7 +391,7 @@ void juegaPC(){
     int posx,posy,repetir=0;
 	srand ((unsigned) time (NULL));
             /*x=1 o=2*/
-
+        setlinestyle(0,0,3)
         if (player1.marca==X) {
 			marca_comp=O;
 		}else{

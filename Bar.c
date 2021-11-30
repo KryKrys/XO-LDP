@@ -124,25 +124,22 @@ void main(){
                 mocultar();
                 pantalla_princip();
                 mver();
-                
-                
 			}
 		}
         
         
 	}while(1);
-    }
+}
 
 
 void reloj(){
-    
         time(&hora);
         outtime = localtime(&hora);
         setcolor(BLUE);
         outtextxy(445, 460, ("%.19s\n",asctime(outtime)));
         delay(1000);
-        bar(450,450,650,480);
         setfillstyle(SOLID_FILL,LIGHTGRAY);
+        bar(450,450,650,480);    
 }
 void pantalla_princip(){
     clrscr();
