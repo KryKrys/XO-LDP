@@ -430,6 +430,7 @@ void pantalla_juego(){
                 if (comprueba()==0){
                     val=1;
                     final=1;
+                    bool1=1;
                     rachas();
                     freopen("C:/TC20/FICHEROS/registro.txt","a+",archivo);
                     
@@ -448,6 +449,7 @@ void pantalla_juego(){
                 if (comprueba()==0){
                     val=3;
                     final=1;
+                    bool1=2;
                     rachas();
                     freopen("C:/TC20/FICHEROS/registro.txt","a+",archivo);
                     time(&hora);
@@ -482,6 +484,7 @@ void pantalla_juego(){
                 if (comprueba()==0){
                     val=1;
                     final=1;
+                    bool1=1;
                     rachas();
                     freopen("C:/TC20/FICHEROS/registro.txt","a+",archivo);
                     fprintf(archivo,"%.19s\n", asctime(outtime));
@@ -500,6 +503,7 @@ void pantalla_juego(){
                 if (comprueba()==0){
                     val=2;
                     final=1;
+                    bool1=3;
                     rachas();
                     freopen("C:/TC20/FICHEROS/registro.txt","a+",archivo);
                     fprintf(archivo,"%.19s\n", asctime(outtime));
@@ -521,7 +525,7 @@ void pantalla_juego(){
 
 void juegaPC(){
     int posx,posy,repetir=0;
-    bool1=1;
+    
 	srand ((unsigned) time (NULL));
             /*x=1 o=2*/
         setlinestyle(0,0,3);
@@ -1240,11 +1244,11 @@ void pantalla_win(){
         rectangle(130,70,510,410);
         setfillstyle(1,DARKGRAY);
 		bar(130,70,510,410);
-        if (bool1==1){
+        if (bool1==2){
             settextstyle(0,0,2);
 		    setcolor(LIGHTMAGENTA);
 		    outtextxy(240,160,"GANA EL PC");
-        }else if(bool1==0){
+        }else if(bool1==1){
             settextstyle(0,0,2);
 		    setcolor(LIGHTMAGENTA);
 		    outtextxy(145,160,"EL GANADOR ES PLAYER 1");
@@ -1269,11 +1273,11 @@ void pantalla_win(){
         rectangle(130,70,510,410);
         setfillstyle(1,DARKGRAY);
         bar(130,70,510,410);
-        if (bool1==1){
+        if (bool1==2){
             settextstyle(0,0,2);
 		    setcolor(GREEN);
 		    outtextxy(240,160,"GANA EL PC");
-        }else if(bool1==0){
+        }else if(bool1==3){
             settextstyle(0,0,2);
 		    setcolor(GREEN);
 		    outtextxy(145,160,"EL GANADOR ES PLAYER 2");
