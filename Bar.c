@@ -17,7 +17,9 @@ void reloj(void);
 void ajustes(void);
 void pantalla_princip(void);
 void screen(void);
-void salir(void);
+void salir(void); 
+
+
 
 void main(){
     initgraph(&driver,&mode," ");
@@ -32,7 +34,47 @@ void main(){
 
      void screen(){
         initgraph(&driver,&mode," ");
-         setfillstyle(SOLID_FILL,LIGHTGRAY);
+
+        	setlinestyle(0,0,3);
+	rectangle(110,140,170,360);
+	rectangle(110,320,350,380);
+	rectangle(290,213,350,320);
+	rectangle(195,140,260,300);
+	rectangle(200,140,390,200);
+	rectangle(380,140,440,380);
+	rectangle(380,320,540,380);
+	rectangle(470,220,540,380);
+	rectangle(470,140,540,210);
+	/*rectangle();*/
+	setcolor(BLACK);
+	line(340,320,348,320);
+	line(251,200,258,200);
+	line(260,191,260,198);
+	line(531,320,538,320);
+	line(440,371,440,378);
+	line(470,371,470,378);
+	/*vertical*/
+	bar(160,130,100,370);
+	/*horizontal*/
+	bar(160,310,340,370);
+	/*fin colita u*/
+	bar(280,220,340,370);
+	 
+	/*inicio n*/
+	bar(250,130,185,290);
+	/*horizontal*/
+	bar(190,130,400,190);
+	/*vertical*/
+	bar(370,130,430,370);
+	 
+	/*horizontal inicio i*/
+	bar(400,310,530,370);
+	/*vertical*/
+	bar(460,230,530,370);
+	/*punto i*/
+	bar(460,130,530,200);
+
+        setfillstyle(SOLID_FILL,LIGHTGRAY);
         bar(0,450,640,480);
         setcolor(RED);
         setlinestyle(0,0,3);
@@ -51,33 +93,30 @@ void main(){
         line(42,465,58,465);
         line(42,470,58,470);
         mver();
-        reloj();
+        
     do{
-        reloj();
+      
         
 		while(mclick()!=1){
 			mposx=mxpos(1);
 			mposy=mypos(1);
-            
-               
-            
-            
+            reloj();
 		}
 		while(mclick()==1){
             
-			if(limit(mposx,mposy,0,450,30,480)){
+			if(limit(mposx,mposy,0,450,20,480)){
 				mocultar();
 				setcolor(RED);
 				outtextxy(250,250,"LESBIAN OS");
 				mver();
                 
-			}else if(limit(mposx,mposy,45,450,70,480)){
+			}else if(limit(mposx,mposy,30,450,55,480)){
 				mocultar();
 				setcolor(RED);
 				outtextxy(250,250,">Insertar presentacion aqui<");
 				mver();
 
-            }else if(limit(mposx,mposy,80,450,100,480)){
+            }else if(limit(mposx,mposy,70,450,90,480)){
                 mocultar();
 				effect3d(boton3.x1,boton3.y1,boton3.x2,boton3.y2,1,DEPRESSED);
 				mver();
@@ -226,34 +265,3 @@ void salir(){
     screen();
 
 }
-
-
-
-    /*rectangle(170,90,470,390);
-    /*verticales*
-    line(270,90,270,390);
-    line(375,90,375,390);
-    /*horizontales*
-    line(170,190,470,190);
-    line(170,290,470,290);
-    
-    newButton(&boton1,100,100,"Ajustes");
-    mver();
-
-    do{
-		while(mclick()!=1){
-			x=mxpos(1);
-			y=mypos(1);
-		}
-		while(mclick()==1){
-			if(limit(x,y,boton1.x1,boton1.y1,boton1.x2,boton1.y2)){
-				mocultar();
-				effect3d(boton1.x1,boton1.y1,boton1.x2,boton1.y2,1,DEPRESSED);
-				setcolor(WHITE);
-				outtextxy(100,120,"Hola B(");
-				mver();
-			}
-		}
-		effect3d(boton1.x1,boton1.y1,boton1.x2,boton1.y2,1,ELEVATE);
-	}while(mclick()!=2);*/
-    
