@@ -35,6 +35,8 @@ void rachas(void);
 void jugador1(void);
 void jugador2(void);
 void juegaPC();
+void present(void);
+
 int xo[3][3]={
     0,0,0,
     0,0,0
@@ -60,6 +62,7 @@ void main(){
     ajustes();
     mver();
     flag();
+    present();
 }
 
      void screen(){
@@ -141,8 +144,7 @@ void main(){
                 
 			}else if(limit(mposx,mposy,30,450,60,480)){
 				mocultar();
-				setcolor(RED);
-				outtextxy(250,250,">Insertar presentacion aqui<");
+				present();
 				mver();
 
             }else if(limit(mposx,mposy,80,450,100,480)){
@@ -1269,4 +1271,23 @@ void rachas(){
 		 e=0;
 		 e1=0;
 	 }
+}
+void present(void)
+{
+    initgraph(&driver,&mode," ");
+	
+	setcolor(LIGHTMAGENTA);
+	outtextxy(260, 50, "Presentacion");
+	outtextxy(214, 88, "Ingenieria en Computacion");
+	outtextxy(276, 123, "Juego XO");
+	setcolor(LIGHTCYAN);
+	outtextxy(260, 161, "Integrantes:");
+	outtextxy(157, 197, "Krystell Melissa Gomez Casstillo 2021-0095U");
+	outtextxy(185, 234, "Guillermo Ernesto Castillo 2020-0379U");
+	outtextxy(151, 269, "Francisco Ernesto Castillo Duarte 2020-0399U");
+	outtextxy(144, 305, "Christopher Alexander Herrera Ortega 2020-0261");
+	setcolor(YELLOW);
+	outtextxy(258, 341, "Grupo: 1M2-CO");
+	outtextxy(230, 376, "30 de Noviembre 2021");
+    getch();
 }
