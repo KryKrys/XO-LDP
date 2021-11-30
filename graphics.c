@@ -82,6 +82,7 @@ void ajustes(){
     int x,y;
 
     button vspc, p1p2;
+    button equis, cero;
     clrscr();
     setbkcolor(LIGHTGRAY);
     setfillstyle(SOLID_FILL,LIGHTGRAY);
@@ -110,8 +111,16 @@ void ajustes(){
     /*selector*/
     setfillstyle(LINE_FILL,WHITE);
     bar(390,100,590,320);
-    setfillstyle(SOLID_FILL,CYAN);
+    setfillstyle(SOLID_FILL,DARKGRAY);
     bar(410,120,570,300);
+    setlinestyle(0,0,3);
+    setcolor(GREEN);
+    circle(450,250,20);
+    setlinestyle(0,0,3);
+    setcolor(LIGHTMAGENTA);
+    line(430,160,470,200);
+    line(470,160,430,200);
+
 
     settextstyle(0,0,3);
     setcolor(DARKGRAY);
@@ -120,6 +129,10 @@ void ajustes(){
     outtextxy(60,300,"P1 vs P2");
     outtextxy(430,360,"Jugar!");
     outtextxy(400,70,"Ficha P1");
+    newButton(&equis,500,170,"  .  ",LIGHTGRAY,DARKGRAY);
+    newButton(&cero,500,250,"     ",LIGHTGRAY,WHITE);
+    effect3d(equis.x1,equis.y1,equis.x2,equis.y2,1,DEPRESSED); 
+
     newButton(&vspc,280,210," ON  ",LIGHTGRAY,GREEN);
     newButton(&p1p2,280,310," OFF ",LIGHTGRAY,RED);
     effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,DEPRESSED); 
@@ -143,6 +156,16 @@ void ajustes(){
             newButton(&p1p2,280,310," ON  ",LIGHTGRAY,GREEN);
             effect3d(vspc.x1,vspc.y1,vspc.x2,vspc.y2,1,ELEVATE);
             effect3d(p1p2.x1,p1p2.y1,p1p2.x2,p1p2.y2,1,DEPRESSED);
+        }else if (limit(x,y,equis.x1,equis.y1,equis.x2,equis.y2)){
+            newButton(&equis,500,170,"  .  ",LIGHTGRAY,DARKGRAY);
+            newButton(&cero,500,250,"     ",LIGHTGRAY,WHITE);
+           effect3d(cero.x1,cero.y1,cero.x2,cero.y2,1,ELEVATE);
+            effect3d(equis.x1,equis.y1,equis.x2,equis.y2,1,DEPRESSED);
+        }else if(limit(x,y,cero.x1,cero.y1,cero.x2,cero.y2)){
+            newButton(&equis,500,170,"     ",LIGHTGRAY,WHITE);
+            newButton(&cero,500,250,"  .  ",LIGHTGRAY,DARKGRAY);
+            effect3d(cero.x1,cero.y1,cero.x2,cero.y2,1,DEPRESSED);
+            effect3d(equis.x1,equis.y1,equis.x2,equis.y2,1,ELEVATE);
         }else if (limit(x,y,405,345,575,405)){
             mocultar();
             pantalla_juego();
